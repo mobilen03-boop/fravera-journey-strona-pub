@@ -1,11 +1,11 @@
 # FraVeRa Journey — robots.txt
-# https://fravera-journey.com
+# https://fraverajourney.com
 
 User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://fravera-journey.com/sitemap.xml
+Sitemap: https://fraverajourney.com/sitemap.xml
 
 # Disallow admin and private areas
 Disallow: /admin/
