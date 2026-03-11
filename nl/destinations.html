@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bestemmingen — FraVeRa Journey</title>
+  <meta name="description" content="Ontdek Poolse kuuroorden: Kolobrzeg, Swieradow-Zdroj, Polanica-Zdroj, Naleczow, Busko-Zdroj, Wieliczka, Polanczyk, Muszyna en meer.">
+  <link rel="canonical" href="https://fravera-journey.com/nl/destinations.html">
+  <link rel="alternate" hreflang="pl" href="https://fravera-journey.com/pl/destinations.html">
+  <link rel="alternate" hreflang="en" href="https://fravera-journey.com/en/destinations.html">
+  <link rel="alternate" hreflang="nl" href="https://fravera-journey.com/nl/destinations.html">
+  <link rel="icon" type="image/png" href="/assets/img/ogolne/favicon.webp">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <link rel="stylesheet" href="/assets/map1/map.css">
+  <style>
+    /* Stijlen voor uitgebreide bestemmingssecties */
+    .destination-detail {
+      padding: var(--space-2xl) 0;
+      border-bottom: 1px solid rgba(229, 201, 139, 0.1);
+    }
+    
+    .destination-detail:last-child {
+      border-bottom: none;
+    }
+    
+    .destination-detail__header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-xl);
+      align-items: center;
+      margin-bottom: var(--space-xl);
+    }
+    
+    .destination-detail__image {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      border-radius: var(--radius-lg);
+    }
+    
+    .destination-detail__intro {
+      padding: var(--space-lg);
+    }
+    
+    .destination-detail__region {
+      display: inline-block;
+      background: rgba(229, 201, 139, 0.15);
+      color: #E5C98B;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: var(--space-sm);
+    }
+    
+    .destination-detail__title {
+      font-size: 36px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: var(--space-md);
+    }
+    
+    .destination-detail__tagline {
+      font-size: 18px;
+      color: rgba(227, 231, 238, 0.9);
+      line-height: 1.6;
+    }
+    
+    .destination-detail__grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-lg);
+      margin-bottom: var(--space-xl);
+    }
+    
+    .destination-detail__card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(229, 201, 139, 0.15);
+      border-radius: var(--radius-md);
+      padding: var(--space-lg);
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+    
+    .destination-detail__card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(229, 201, 139, 0.3);
+    }
+    
+    .destination-detail__card--full {
+      grid-column: 1 / -1;
+      background: linear-gradient(135deg, rgba(229, 201, 139, 0.08) 0%, rgba(229, 201, 139, 0.02) 100%);
+    }
+    
+    .destination-detail__icon {
+      font-size: 24px;
+      margin-bottom: var(--space-sm);
+    }
+    
+    .destination-detail__card-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: #E5C98B;
+      margin-bottom: var(--space-sm);
+    }
+    
+    .destination-detail__text {
+      font-size: 14px;
+      line-height: 1.7;
+      color: rgba(227, 231, 238, 0.85);
+      margin: 0;
+    }
+    
+    .destination-detail__fact {
+      background: rgba(229, 201, 139, 0.1);
+      border-left: 4px solid #E5C98B;
+      padding: var(--space-md) var(--space-lg);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      margin: var(--space-lg) 0;
+    }
+    
+    .destination-detail__fact-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #E5C98B;
+      margin-bottom: 6px;
+    }
+    
+    .destination-detail__fact-text {
+      font-size: 16px;
+      font-weight: 500;
+      color: #fff;
+      margin: 0;
+    }
+    
+    .destination-detail__gallery {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-md);
+      margin-top: var(--space-lg);
+    }
+    
+    .destination-detail__gallery-item {
+      aspect-ratio: 4 / 3;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+    
+    .destination-detail__gallery-item--main {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+    
+    .destination-detail__gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+    
+    .destination-detail__gallery-item:hover img {
+      transform: scale(1.05);
+    }
+    
+    @media (max-width: 968px) {
+      .destination-detail__header {
+        grid-template-columns: 1fr;
+      }
+      
+      .destination-detail__image {
+        height: 300px;
+      }
+      
+      .destination-detail__grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      
+      .destination-detail__gallery {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .destination-detail__gallery-item--main {
+        grid-column: span 2;
+        grid-row: span 1;
+      }
+    }
+    
+    @media (max-width: 640px) {
+      .destination-detail__title {
+        font-size: 28px;
+      }
+      
+      .destination-detail__grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .destination-detail__gallery {
+        grid-template-columns: 1fr;
+      }
+      
+      .destination-detail__gallery-item--main {
+        grid-column: span 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="header-placeholder"></div>
+
+  <main style="padding-top: 100px;">
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">Bestemmingen</span>
+          <h1 class="section-title">Regeneratie <strong>Kaart</strong></h1>
+          <p class="section-desc">
+            Dit is geen verkoopkaart. Het is een beslissingskaart: waar stilte, klimaat en natuurlijk potentieel jouw behoeften ontmoeten.
+          </p>
+        </div>
+
+        <!-- Interactieve Kaart -->
+        <div style="margin-bottom: var(--space-xl);">
+          <iframe src="/assets/map1/map.html?lang=nl" style="width: 100%; height: 600px; border: none; border-radius: var(--radius-lg);" title="Kaart van Poolse kuuroorden"></iframe>
+        </div>
+
+        <div class="section-header" style="margin-top: var(--space-2xl);">
+          <h2 class="section-title">Geselecteerde <strong>Bestemmingen</strong></h2>
+        </div>
+
+        <!-- UITGEBREIDE BESTEMMINGSECTIES -->
+        
+        <!-- 1. Kolobrzeg -->
+        <article id="kolobrzeg" class="destination-detail">
+          <div class="destination-detail__header">
+            <img src="/assets/img/destinations/kolobrzeg/kolobrzeg.webp" alt="Kolobrzeg" class="destination-detail__image">
+            <div class="destination-detail__intro">
+              <span class="destination-detail__region">West-Pommeren, Oostzee Kust</span>
+              <h2 class="destination-detail__title">Kołobrzeg</h2>
+              <p class="destination-detail__tagline">Voor klanten uit NL/DE is dit een eenvoudige, veilige formule: zee, frisse lucht, dagritme, plus kuuroord behandelingen.</p>
+            </div>
+          </div>
+          
+          <div class="destination-detail__grid">
+            <div class="destination-detail__card">
+              <div class="destination-detail__icon">✦</div>
+              <h3 class="destination-detail__card-title">Wat maakt het uniek</h3>
+              <p class="destination-detail__text">Het grootste Poolse kuuroord combineert zeeklimaat met rijke natuurlijke geneeskrachtige hulpbronnen. Het is een plek waar rust echt samenkomt met therapie — met wandelingen aan zee en behandelingen op basis van pekel.</p>
+            </div>
+            
+            <div class="destination-detail__card">
+              <div class="destination-detail__icon">⭐</div>
+              <h3 class="destination-detail__card-title">Waarom het beroemd is</h3>
+              <p class="destination-detail__text">Beroemd om zijn pekels en veen en een microklimaat verzadigd met zee-aërosol. Deze hulpbronnen vormen de basis van behandelingen die worden gebruikt voor ademhalings- en circulatieprofielen.</p>
+            </div>
+            
+            <div class="destination-detail__card">
+              <div class="destination-detail__icon">◆</div>
+              <h3 class="destination-detail__card-title">Wat het onderscheidt</h3>
+              <p class="destination-detail__text">Zeldzame combinatie van kuuroord en volwaardig badplaats: brede stranden, promenades en stedelijke infrastructuur. Je hebt toegang tot de natuur binnen handbereik — zonder het gevoel afgesneden te zijn van de beschaving.</p>
+            </div>
+            
+            <div class="destination-detail__card destination-detail__card--full">
+              <div class="destination-detail__icon">❤</div>
+              <h3 class="destination-detail__card-title">Waarom het de moeite waard is om te bezoeken</h3>
+              <p class="destination-detail__text">Voor klanten uit NL/DE is dit een eenvoudige, veilige formule: zee, frisse lucht, dagritme, plus kuuroord behandelingen. Ideaal als je een merkbaar verschil in welzijn wilt voelen zonder extreme plannen.</p>
+            </div>
+          </div>
+          
+          <div class="destination-detail__fact">
+            <div class="destination-detail__fact-label">Wist je dat</div>
+            <p class="destination-detail__fact-text">De pekel wordt soms het "witte goud" van Kołobrzeg genoemd.</p>
+          </div>
+          
+          <div class="destination-detail__gallery">
+            <div class="destination-detail__gallery-item destination-detail__gallery-item--main">
+              <img src="/assets/img/destinations/kolobrzeg/kolobrzeg.webp" alt="Kolobrzeg - hoofdweergave">
+            </div>
+            <div class="destination-detail__gallery-item">
+              <img src="/assets/img/destinations/kolobrzeg/kolobrzeg_alt-1.webp" alt="Kolobrzeg">
+            </div>
+            <div class="destination-detail__gallery-item">
+              <img src="/assets/img/destinations/kolobrzeg/kolobrzeg1.webp" alt="Kolobrzeg">
+            </div>
+            <div class="destination-detail__gallery-item">
+              <img src="/assets/img/destinations/kolobrzeg/kolobrzeg2.webp" alt="Kolobrzeg">
+            </div>
+          </div>
+        </article>
+
+        <!-- 2. Swieradow-Zdroj -->
+        <article id="swieradow" class="destination-detail">
+          <div class="destination-detail__header">
+            <img src="/assets/img/destinations/swieradow/swieradow.webp" alt="Swieradow-Zdroj" class="destination-detail__image">
+            <div class="destination-detail__intro">
+              <span class="destination-detail__region">Neder-Silezië, Izer Gebergte</span>
+              <h2 class="destination-detail__title">Świeradów-Zdrój</h2>
+              <p class="destination-detail__tagline">Voor westerse klanten is dit een zeer goede "Alpen gevoel" tegen een eerlijke prijs: bergen, frisse lucht, infrastructuur en verstandige behandelbasis.</p>
+            </div>
+          </div>
+          
+          <div class="destination-detail__grid">
+            <div class="destination-detail__card">
+              <div class="destination-detail__icon">✦</div>
+              <h3 class="destination-detail__card-title">Wat maakt het uniek</h3>
+              <p class="destination-detail__text">Świeradów onderscheidt zich door zijn radon kuuroord therapie en bergklimaat van de Izer. Het is een kuuroord dat uitstekend behandeling combineert met activiteit (wandelen, fietsen, bergen).</p>
+            </div>
+            
+            <div class="destination-detail__card">
+              <div class="destination-detail__icon">⭐</div>
+              <h3 class="destination-detail__card-title">Waarom het beroemd is</h3>
+              <p class="destination-detail__text">Beroemd om zijn radon wateren en status als een van de weinige radon kuuroorden in Europa. Bovendien heeft het sterke "berg" attracties zoals de gondelbaan naar Stóg Izerski.</p>
+            </div>
+            
+            <div class="destination-detail__card">
+              <div class="destination-detail__icon">◆</div>
+              <h3 class="destination-detail__card-title">Wat het onderscheidt</h3>
+              <p class="destination-detail__text">Dynamisch karakter: je kunt een strikt kuuroord verblijf hebben, maar ook een regeneratief-actief verblijf. Dit is belangrijk voor klanten die "onbeweeglijkheid" niet goed verdragen.</p>
+            </div>
+            
+            <div class="destination-detail__card destination-detail__card--full">
+              <div class="destination-detail__icon">❤</div>
+              <h3 class="destination-detail__card-title">Waarom het de moeite waard is om te bezoeken</h3>
+              <p class="destination-detail__text">Voor westerse klanten is dit een zeer goede "Alpen gevoel" tegen een eerlijke prijs: bergen, frisse lucht, infrastructuur en verstandige behandelbasis. Ideaal voor seizoensreset en energie opbouwen.</p>
+            </div>
+          </div>
+          
+          <div class="destination-detail__fact">
+            <div class="destination-detail__fact-label">Wist je dat</div>
+            <p class="destination-detail__fact-text">Het kuuroord Świeradów-Zdrój-Czerniawa wordt aangeduid als een van de weinige radon kuuroorden in Europa.</p>
+          </div>
+          
+          <div class="destination-detail__gallery">
+            <div class="destination-detail__gallery-item destination-detail__gallery-item--main">
+              <img src="/assets/img/destinations/swieradow/swieradow.webp" alt="Swieradow-Zdroj - hoofdweergave">
+            </div>
+            <div class="destination-detail__gallery-item">
+              <img src="/assets/img/destinations/swieradow/swieradow_alt-1.webp" alt="Swieradow-Zdroj">
+            </div>
+            <div class="destination-detail__gallery-item">
+              <img src="/assets/img/destinations/swieradow/swieradow2.webp" alt="Swieradow-Zdroj">
+            </div>
+          </div>
+        </article>
+
+        <!-- 3. Polanica-Zdroj -->
+        <article id="polanica" class="destination-detail">
+          <div class="destination-detail__header">
+            <img src="/assets/img/destinations/polanica/polanica.webp" alt="Polanica-Zdroj" class="destination-detail__image">
+            <div class="destination-detail__intro">
+              <span class="destination-detail__region">Neder-Silezië, Klodzka Vallei</span>
+              <h2 class="destination-detail__title">Polanica-Zdrój</h2>
+              <p class="destination-detail__tagline">Als de klant wil rusten in klassieke kuuroord-stijl, zonder drukte en chaos, biedt Polanica zeer voorspelbaar comfort.</p>
+            </div>
+          </div>
+          
+          <div class="destination-detail__grid">
+            <div class="destination-detail__card">
+              <div class="destination-detail__icon">✦</div>
+              <h3 class="destination-detail__card-title">Wat maakt het uniek</h3>
+              <p class="destination-detail__text">Een zeer "elegante" Sudeten kuuroord — vredig, groen, met een klassiek kuuroord klimaat. Klimaattherapie en de traditie van drinkhallen/kuuroord parken werken hier.</p>
+            </div>
+            
+            <div class="destination-detail__card">
+              <div class="destination-detail__icon">⭐</div>
+              <h3 class="destination-detail__card-title">Waarom het beroemd is</h3>
+              <p class="destination-detail__text">Beroemd om zijn Kuuroord Park en mineraal wateren. In de regio is het een van de meest herkenbare bestemmingen voor mensen die vreedzame regeneratie zoeken.</p>
+            </div>
+            
+            <div class="destination-detail__card">
+              <div class="destination-detail__icon">◆</div>
+              <h3 class="destination-detail__card-title">Wat het onderscheidt</h3>
+              <p class="destination-detail__text">"Kuuroord orde" — alles is dichtbij, het is esthetisch, en het ritme van het stadje bevordert regeneratie. Goede uitvalsbasis voor uitstapjes naar Klodzka Vallei en omgeving.</p>
+            </div>
+            
+            <div class="destination-detail__card destination-detail__card--full">
+              <div class="destination-detail__icon">❤</div>
+              <h3 class="destination-detail__card-title">Waarom het de moeite waard is om te bezoeken</h3>
+              <p class="destination-detail__text">Als de klant wil rusten in klassieke kuuroord-stijl, zonder drukte en chaos, biedt Polanica zeer voorspelbaar comfort. Een veilige richting voor de eerste kuuroord reis.</p>
+            </div>
+          </div>
+          
+          <div class="destination-detail__fact">
+            <div class="destination-detail__fact-label">Wist je dat</div>
+            <p class="destination-detail__fact-text">De stad benadrukt officieel gunstige omstandigheden voor klimaattherapie.</p>
+          </div>
+          
+          <div class="destination-detail__gallery">
+            <div class="destination-detail__gallery-item destination-detail__gallery-item--main">
+              <img src="/assets/img/destinations/polanica/polanica.webp" alt="Polanica-Zdroj - hoofdweergave">
+            </div>
+            <div class="destination-detail__gallery-item">
+              <img src="/assets/img/destinations/polanica/polanica_alt-1.webp" alt="Polanica-Zdroj">
+            </div>
+            <div class="destination-detail__gallery-item">
+              <img src="/assets/img/destinations/polanica/polanica1.webp" alt="Polanica-Zdroj">
+            </div>
+            <div class="destination-detail__gallery-item">
+              <img src="/assets/img/destinations/polanica/polanica2.webp" alt="Polanica-Zdroj">
+            </div>
+          </div>
+        </article>
+
+        <!-- 4. Naleczow -->
+        <article id="naleczow" class="destination-detail">
+          <div class="destination-detail__header">
+            <img src="/assets/img/destinations/naleczow/naleczow.webp" alt="Naleczow" class="destination-detail__image">
+            <div class="destination-detail__intro">
+              <span class="destination-detail__region">Lublin Regio</span>
+              <h2 class="destination-detail__title">Nałęczów</h2>
+              <p class="destination-detail__tagline">Voor premium klanten is dit een geweldig compromis: rust, natuur, behandelingen en de mogelijkheid van mentale rust.</p>
+            </div>
+          </div>
+          
+          <div class="destination-detail__grid">
+            <div class="destination-detail__card">
+              <div class="destination-detail__icon">✦</div>
+              <h3 class="destination-detail__card-title">Wat maakt het uniek</h3>
+              <p class="destination-detail__text">Nałęczów staat bekend om zijn microklimaat en kuuroord karakter gericht op "resetten" van het circulatoire systeem. Het is een kuuroord dat tegelijkertijd groen, intiem en zeer "wandelbaar" is.</p>
+            </div>
+            
+            <div class="destination-detail__card">
+              <div class="destination-detail__icon">⭐</div>
+              <h3 class="destination-detail__card-title">Waarom het beroemd is</h3>
+              <p class="destination-detail__text">Beroemd om zijn cardiologisch profiel en microklimatische omstandigheden, die worden beschreven als bevorderlijk voor het verlagen van bloeddruk en het verbeteren van welzijn. Het Kuuroord Park en omgeving van ravijnen/loess spelen een belangrijke rol.</p>
+            </div>
+            
+            <div class="destination-detail__card">
+              <div class="destination-detail__icon">◆</div>
+              <h3 class="destination-detail__card-title">Wat het onderscheidt</h3>
+              <p class="destination-detail__text">Een kuuroord met "zachte energie": minder medische strengheid, meer comfort van het dagelijks leven, groen en langzaam ritme. Goed voor mensen die regeneratie willen maar zonder gevoel van "ziekenhuis".</p>
+            </div>
+            
+            <div class="destination-detail__card destination-detail__card--full">
+              <div class="destination-detail__icon">❤</div>
+              <h3 class="destination-detail__card-title">Waarom het de moeite waard is om te bezoeken</h3>
+              <p class="destination-detail__text">Voor premium klanten is dit een geweldig compromis: rust, natuur, behandelingen en de mogelijkheid van mentale rust. Ideaal wanneer de prioriteit is stress, vermoeidheid, preventie en harmoniseren van het ritme van de dag.</p>
+            </div>
+          </div>
+          
+          <div class="destination-detail__fact">
+            <div class="destination-detail__fact-label">Wist je dat</div>
+            <p class="destination-detail__fact-text">Het kuuroord benadrukt hoge lucht ionisatie, onder andere door terreinsculptuur en vegetatie.</p>
+          </div>
+          
+          <div class="destination-detail__gallery">
+            <div class="destination-detail__gallery-item destination-detail__gallery-item--main">
+              <img src="/assets/img/destinations/naleczow/naleczow.webp" alt="Naleczow - hoofdweergave">
+            </div>
+            <div class="destination-detail__gallery-item">
+              <img src="/assets/img/destinations/naleczow/naleczow_alt-1.webp" alt="Naleczow">
+            </div>
+            <div class="destination-detail__gallery-item">
+              <img src="/assets/img/destinations/naleczow/naleczow1.webp" alt="Naleczow">
+            </div>
+            <div class="destination-detail__gallery-item">
+              <img src="/assets/img/destinations/naleczow/naleczow2.webp" alt="Naleczow">
+            </div>
+          </div>
+        </article>
+
+        <!-- 5. Busko-Zdroj -->
+        <article id="busko" class="destination-detail">
+          <div class="destination-detail__header">
+            <img src="/assets/img/destinations/busko/busko.webp" alt="Busko-Zdroj" class="destination-detail__image">
+            <div class="destination-detail__intro">
+              <span class="destination-detail__region">Swietokrzyskie</span>
+              <h2 class="destination-detail__title">Busko-Zdrój</h2>
+              <p class="destination-detail__tagline">Als het doel is werkelijke verbetering van bewegingscomfort, regeneratie, behandelprogramma en rust — Busko is een zeer logische keuze.</p>
+            </div>
+          </div>
+          
+          <div class="destination-detail__grid">
+            <div class="destination-detail__card">
+              <div class="destination-detail__icon">✦</div>
+              <h3 class="destination-detail__card-title">Wat maakt het uniek</h3>
+              <p class="destination-detail__text">Een van de sterkste "zwavel kuuroorden" in Polen — een kuuroord met een duidelijk therapeutisch in plaats van alleen recreatief karakter. Behandelingen zijn gebaseerd op unieke zwavel wateren en jodium pekels.</p>
+            </div>
+            
+            <div class="destination-detail__card">
+              <div class="destination-detail__icon">⭐</div>
+              <h3 class="destination-detail__card-title">Waarom het beroemd is</h3>
+              <p class="destination-detail__text">Vooral beroemd om baden en therapieën op basis van zwavel wateren, geassocieerd met verlichting bij reumatische en degeneratieve aandoeningen. Dit is een "specialiteit" die Busko al jaren in zijn DNA heeft.</p>
+            </div>
+            
+            <div class="destination-detail__card">
+              <div class="destination-detail__icon">◆</div>
+              <h3 class="destination-detail__card-title">Wat het onderscheidt</h3>
+              <p class="destination-detail__text">Hoge concentratie van kuuroord infrastructuur en vredig, "therapeutisch" ritme van het stadje. Voor veel klanten is dit een plus: minder afleiding, meer consistentie in regeneratie.</p>
+            </div>
+            
+            <div class="destination-detail__card destination-detail__card--full">
+              <div class="destination-detail__icon">❤</div>
+              <h3 class="destination-detail__card-title">Waarom het de moeite waard is om te bezoeken</h3>
+              <p class="destination-detail__text">Als het doel is werkelijke verbetering van bewegingscomfort, regeneratie, behandelprogramma en rust — Busko is een zeer logische keuze. In de praktijk: de klant krijgt een duidelijk verblijfsplan en gevoel van doel van de reis.</p>
+            </div>
+          </div>
+          
+          <div class="destination-detail__fact">
+            <div class="destination-detail__fact-label">Wist je dat</div>
+            <p class="destination-detail__fact-text">Busko benadrukt twee typen geneeskrachtige wateren: zwavel wateren en jodium-broom pekel.</p>
+          </div>
+          
+          <div class="destination-detail__gallery">
+            <div class="destination-detail__gallery-item destination-detail__gallery-item--main">
+              <img src="/assets/img/destinations/busko/busko.webp" alt="Busko-Zdroj - hoofdweergave">
+            </div>
+            <div class="destination-detail__gallery-item">
+              <img src="/assets/img/destinations/busko/busko_alt-1.webp" alt="Busko-Zdroj">
+            </div>
+            <div class="destination-detail__gallery-item">
+              <img src="/assets/img/destinations/busko/busko1.webp" alt="Busko-Zdroj">
+            </div>
+          </div>
+        </article>
+
+        <!-- 6. Wieliczka -->
+        <article id="wieliczka" class="destination-detail">
+          <div class="destination-detail__header">
+            <img src="/assets/img/destinations/wieliczka/wieliczka.webp" alt="Wieliczka" class="destination-detail__image">
+            <div class="destination-detail__intro">
+              <span class="destination-detail__region">Klein-Polen, nabij Krakau</span>
+              <h2 class="destination-detail__title">Wieliczka</h2>
+              <p class="destination-detail__tagline">Voor een klant die een kortere reis of eerste test van Polen wil: gemakkelijke toegang, sterke "must see" attractie en gezondheidselement.</p>
+            </div>
+          </div>
+          
+          <div class="destination-detail__grid">
+            <div class="destination-detail__card">
+              <div class="destination-detail__icon">✦</div>
+              <h3 class="destination-detail__card-title">Wat maakt het uniek</h3>
+              <p class="destination-detail__text">Wieliczka is geen "typisch kuuroord" — de uniciteit ervan komt voort uit de combinatie van zoutmijn erfgoed met gezondheidsaanbod (zout microklimaat / graduatietoren). Voor klanten maakt het indruk: een plek met geschiedenis en concrete ervaring.</p>
+            </div>
+            
+            <div class="destination-detail__card">
+              <div class="destination-detail__icon">⭐</div>
+              <h3 class="destination-detail__card-title">Waarom het beroemd is</h3>
+              <p class="destination-detail__text">Wereldberoemd om de Wieliczka Zoutmijn, en in de gezondheidscontext — om de pekel graduatietoren en gunstig inhalatie microklimaat. Dit is een eenvoudige, populaire vorm van ademhalingsondersteuning.</p>
+            </div>
+            
+            <div class="destination-detail__card">
+              <div class="destination-detail__icon">◆</div>
+              <h3 class="destination-detail__card-title">Wat het onderscheidt</h3>
+              <p class="destination-detail__text">Locatie: dicht bij Krakau, dus gemakkelijke logistiek en mogelijkheid om gezondheidsverblijf te combineren met citytrip. Dit is een geweldige richting voor klanten die "gezondheid + cultuur" in één reis willen.</p>
+            </div>
+            
+            <div class="destination-detail__card destination-detail__card--full">
+              <div class="destination-detail__icon">❤</div>
+              <h3 class="destination-detail__card-title">Waarom het de moeite waard is om te bezoeken</h3>
+              <p class="destination-detail__text">Voor een klant die een kortere reis of eerste test van Polen wil: gemakkelijke toegang, sterke "must see" attractie en gezondheidselement. Geweldig als aanvulling op andere Klein-Polen bestemmingen.</p>
+            </div>
+          </div>
+          
+          <div class="destination-detail__fact">
+            <div class="destination-detail__fact-label">Wist je dat</div>
+            <p class="destination-detail__fact-text">De graduatietoren bevindt zich in St. King's Park, direct bij de ingang van de mijnbouwzone.</p>
+          </div>
+          
+          <div class="destination-detail__gallery">
+            <div class="destination-detail__gallery-item destination-detail__gallery-item--main">
+              <img src="/assets/img/destinations/wieliczka/wieliczka.webp" alt="Wieliczka - hoofdweergave">
+            </div>
+            <div class="destination-detail__gallery-item">
+              <img src="/assets/img/destinations/wieliczka/wieliczka_alt-1.webp" alt="Wieliczka">
+            </div>
+            <div class="destination-detail__gallery-item">
+              <img src="/assets/img/destinations/wieliczka/wieliczka2.webp" alt="Wieliczka">
+            </div>
+          </div>
+        </article>
+
+        <!-- 7. Polanczyk -->
+        <article id="polanczyk" class="destination-detail">
+          <div class="destination-detail__header">
+            <img src="/assets/img/destinations/polanczyk/polanczyk.webp" alt="Polanczyk" class="destination-detail__image">
+            <div class="destination-detail__intro">
+              <span class="destination-detail__region">Subkarpaten, Bieszczady (Solinskie Meer)</span>
+              <h2 class="destination-detail__title">Polańczyk</h2>
+              <p class="destination-detail__tagline">Ideaal voor een klant die regeneratie in de natuur wil, maar niet alleen "liggen".</p>
+            </div>
+          </div>
+          
+          <div class="destination-detail__grid">
+            <div class="destination-detail__card">
+              <div class="destination-detail__icon">✦</div>
+              <h3 class="destination-detail__card-title">Wat maakt het uniek</h3>
+              <p class="destination-detail__text">Een kuuroord aan het Solinskie Meer — zeldzame combinatie van voorgebergte klimaat en water "als in een kuuroord". De plek heeft tegelijkertijd een duidelijk recreatief en kuuroord karakter.</p>
+            </div>
+            
+            <div class="destination-detail__card">
+              <div class="destination-detail__icon">⭐</div>
+              <h3 class="destination-detail__card-title">Waarom het beroemd is</h3>
+              <p class="destination-detail__text">Beroemd om zijn ligging aan het grootste kunstmatige reservoir van Polen (Solinskie) en mineraal wateren gebruikt bij de behandeling van verschillende aandoeningen. Dit is het grootste kuuroord en recreatiecentrum in de Bieszczady.</p>
+            </div>
+            
+            <div class="destination-detail__card">
+              <div class="destination-detail__icon">◆</div>
+              <h3 class="destination-detail__card-title">Wat het onderscheidt</h3>
+              <p class="destination-detail__text">Uitzichten en "adem van ruimte" — de Bieszczady doen het werk. Polańczyk biedt ook activiteitenmogelijkheden: wandelingen, water, lichte routes — zonder extremen.</p>
+            </div>
+            
+            <div class="destination-detail__card destination-detail__card--full">
+              <div class="destination-detail__icon">❤</div>
+              <h3 class="destination-detail__card-title">Waarom het de moeite waard is om te bezoeken</h3>
+              <p class="destination-detail__text">Ideaal voor een klant die regeneratie in de natuur wil, maar niet alleen "liggen". In de praktijk: behandelingen 's ochtends, meer/wandeling/lichte activiteit 's middags — en de persoon keert werkelijk "verfrist" terug van de reis.</p>
+            </div>
+          </div>
+          
+          <div class="destination-detail__fact">
+            <div class="destination-detail__fact-label">Wist je dat</div>
+            <p class="destination-detail__fact-text">Polańczyk ligt aan de westelijke oever van het Solinskie Meer en is het grootste kuuroord in de Bieszczady.</p>
+          </div>
+          
+          <div class="destination-detail__gallery">
+            <div class="destination-detail__gallery-item destination-detail__gallery-item--main">
+              <img src="/assets/img/destinations/polanczyk/polanczyk.webp" alt="Polanczyk - hoofdweergave">
+            </div>
+            <div class="destination-detail__gallery-item">
+              <img src="/assets/img/destinations/polanczyk/polanczyk_alt-1.webp" alt="Polanczyk">
+            </div>
+            <div class="destination-detail__gallery-item">
+              <img src="/assets/img/destinations/polanczyk/polanczyk1.webp" alt="Polanczyk">
+            </div>
+            <div class="destination-detail__gallery-item">
+              <img src="/assets/img/destinations/polanczyk/polanczyk2.webp" alt="Polanczyk">
+            </div>
+            <div class="destination-detail__gallery-item">
+              <img src="/assets/img/destinations/polanczyk/polanczyk3.webp" alt="Polanczyk">
+            </div>
+          </div>
+        </article>
+
+        <!-- 8. Muszyna -->
+        <article id="muszyna" class="destination-detail">
+          <div class="destination-detail__header">
+            <img src="/assets/img/destinations/muszyna/muszyna.webp" alt="Muszyna" class="destination-detail__image">
+            <div class="destination-detail__intro">
+              <span class="destination-detail__region">Klein-Polen, Sącz Beskids (Poprad Vallei)</span>
+              <h2 class="destination-detail__title">Muszyna</h2>
+              <p class="destination-detail__tagline">Voor vermoeide mensen is dit de ideale reset: vredig dagplan, natuur, wandelingen, mineraal wateren.</p>
+            </div>
+          </div>
+          
+          <div class="destination-detail__grid">
+            <div class="destination-detail__card">
+              <div class="destination-detail__icon">✦</div>
+              <h3 class="destination-detail__card-title">Wat maakt het uniek</h3>
+              <p class="destination-detail__text">Muszyna is een kuuroord met een zeer aangenaam "natuurlijk" klimaat, sterk verbonden met mineraal wateren en de rust van de Poprad Vallei. Het is uitstekend voor regeneratieve verblijven met natuur op de voorgrond.</p>
+            </div>
+            
+            <div class="destination-detail__card">
+              <div class="destination-detail__icon">⭐</div>
+              <h3 class="destination-detail__card-title">Waarom het beroemd is</h3>
+              <p class="destination-detail__text">Beroemd, onder andere, om zijn Zintuigen Tuinen — een zeer vriendelijke en toegankelijke attractie (ook voor mensen met bewegingsbeperkingen). Het heeft ook een duidelijk wandel- en familiekarakter.</p>
+            </div>
+            
+            <div class="destination-detail__card">
+              <div class="destination-detail__icon">◆</div>
+              <h3 class="destination-detail__card-title">Wat het onderscheidt</h3>
+              <p class="destination-detail__text">Een kuuroord dat "groene ontspanning" combineert met plaatsen-ervaringen (tuinen, uitkijkpunten). Voor klanten is dit echt voelbaar: er is ergens om te ademen en ergens om te wandelen.</p>
+            </div>
+            
+            <div class="destination-detail__card destination-detail__card--full">
+              <div class="destination-detail__icon">❤</div>
+              <h3 class="destination-detail__card-title">Waarom het de moeite waard is om te bezoeken</h3>
+              <p class="destination-detail__text">Voor vermoeide mensen is dit de ideale reset: vredig dagplan, natuur, wandelingen, mineraal wateren. Plus: nabijheid van bergpaden zonder de druk van "hooggebergte" uitdagingen.</p>
+            </div>
+          </div>
+          
+          <div class="destination-detail__fact">
+            <div class="destination-detail__fact-label">Wist je dat</div>
+            <p class="destination-detail__fact-text">De Zintuigen Tuinen zijn onder andere aangepast voor rolstoelen en mensen met een handicap (paden, borden).</p>
+          </div>
+          
+          <div class="destination-detail__gallery">
+            <div class="destination-detail__gallery-item destination-detail__gallery-item--main">
+              <img src="/assets/img/destinations/muszyna/muszyna.webp" alt="Muszyna - hoofdweergave">
+            </div>
+            <div class="destination-detail__gallery-item">
+              <img src="/assets/img/destinations/muszyna/muszyna_alt-1.webp" alt="Muszyna">
+            </div>
+            <div class="destination-detail__gallery-item">
+              <img src="/assets/img/destinations/muszyna/muszyna1.webp" alt="Muszyna">
+            </div>
+            <div class="destination-detail__gallery-item">
+              <img src="/assets/img/destinations/muszyna/Muszyna2.webp" alt="Muszyna">
+            </div>
+          </div>
+        </article>
+
+        <div class="text-center" style="margin-top: var(--space-2xl);">
+          <a href="/nl/journey-form.html" class="btn btn-primary">Vraag Beschikbaarheid Aan</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="/assets/js/includes.js"></script>
+  <script src="/assets/js/app.js"></script>
+</body>
+</html>

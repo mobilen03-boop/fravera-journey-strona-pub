@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Destinations — FraVeRa Journey</title>
+  <meta name="description" content="Discover Polish health resorts: Kolobrzeg, Swieradow-Zdroj, Polanica-Zdroj, Naleczow, Busko-Zdroj, Wieliczka, Polanczyk, Muszyna and more.">
+  <link rel="canonical" href="https://fravera-journey.com/en/destinations.html">
+  <link rel="alternate" hreflang="pl" href="https://fravera-journey.com/pl/destinations.html">
+  <link rel="alternate" hreflang="en" href="https://fravera-journey.com/en/destinations.html">
+  <link rel="alternate" hreflang="nl" href="https://fravera-journey.com/nl/destinations.html">
+  <link rel="icon" type="image/png" href="/assets/img/ogolne/favicon.webp">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <link rel="stylesheet" href="/assets/map1/map.css">
+  <style>
+    /* Styles for expanded destination sections */
+    .destination-detail {
+      padding: var(--space-2xl) 0;
+      border-bottom: 1px solid rgba(229, 201, 139, 0.1);
+    }
+    
+    .destination-detail:last-child {
+      border-bottom: none;
+    }
+    
+    .destination-detail__header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-xl);
+      align-items: center;
+      margin-bottom: var(--space-xl);
+    }
+    
+    .destination-detail__image {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      border-radius: var(--radius-lg);
+    }
+    
+    .destination-detail__intro {
+      padding: var(--space-lg);
+    }
+    
+    .destination-detail__region {
+      display: inline-block;
+      background: rgba(229, 201, 139, 0.15);
+      color: #E5C98B;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: var(--space-sm);
+    }
+    
+    .destination-detail__title {
+      font-size: 36px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: var(--space-md);
+    }
+    
+    .destination-detail__tagline {
+      font-size: 18px;
+      color: rgba(227, 231, 238, 0.9);
+      line-height: 1.6;
+    }
+    
+    .destination-detail__grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-lg);
+      margin-bottom: var(--space-xl);
+    }
+    
+    .destination-detail__card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(229, 201, 139, 0.15);
+      border-radius: var(--radius-md);
+      padding: var(--space-lg);
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+    
+    .destination-detail__card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(229, 201, 139, 0.3);
+    }
+    
+    .destination-detail__card--full {
+      grid-column: 1 / -1;
+      background: linear-gradient(135deg, rgba(229, 201, 139, 0.08) 0%, rgba(229, 201, 139, 0.02) 100%);
+    }
+    
+    .destination-detail__icon {
+      font-size: 24px;
+      margin-bottom: var(--space-sm);
+    }
+    
+    .destination-detail__card-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: #E5C98B;
+      margin-bottom: var(--space-sm);
+    }
+    
+    .destination-detail__text {
+      font-size: 14px;
+      line-height: 1.7;
+      color: rgba(227, 231, 238, 0.85);
+      margin: 0;
+    }
+    
+    .destination-detail__fact {
+      background: rgba(229, 201, 139, 0.1);
+      border-left: 4px solid #E5C98B;
+      padding: var(--space-md) var(--space-lg);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      margin: var(--space-lg) 0;
+    }
+    
+    .destination-detail__fact-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #E5C98B;
+      margin-bottom: 6px;
+    }
+    
+    .destination-detail__fact-text {
+      font-size: 16px;
+      font-weight: 500;
+      color: #fff;
+      margin: 0;
+    }
+    
+    .destination-detail__gallery {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-md);
+      margin-top: var(--space-lg);
+    }
+    
+    .destination-detail__gallery-item {
+      aspect-ratio: 4 / 3;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+    
+    .destination-detail__gallery-item--main {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+    
+    .destination-detail__gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+    
+    .destination-detail__gallery-item:hover img {
+      transform: scale(1.05);
+    }
+    
+    @media (max-width: 968px) {
+      .destination-detail__header {
+        grid-template-columns: 1fr;
+      }
+      
+      .destination-detail__image {
+        height: 300px;
+      }
+      
+      .destination-detail__grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      
+      .destination-detail__gallery {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .destination-detail__gallery-item--main {
+        grid-column: span 2;
+        grid-row: span 1;
+      }
+    }
+    
+    @media (max-width: 640px) {
+      .destination-detail__title {
+        font-size: 28px;
+      }
+      
+      .destination-detail__grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .destination-detail__gallery {
+        grid-template-columns: 1fr;
+      }
+      
+      .destination-detail__gallery-item--main {
+        grid-column: span 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="header-placeholder"></div>
+
+  <main style="padding-top: 100px;">
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">Destinations</span>
+          <h1 class="section-title">Regeneration <strong>Map</strong></h1>
+          <p class="section-desc">
+            This is not a sales map. It's a decision map: where silence, climate and natural potential meet your needs.
+          </p>
+        </div>
+
+        <!-- Interactive Map -->
+        <div style="margin-bottom: var(--space-xl);">
+          <iframe src="/assets/map1/map.html?lang=en" style="width: 100%; height: 600px; border: none; border-radius: var(--radius-lg);" title="Map of Polish spa resorts"></iframe>
+        </div>
+
+        <div class="section-header" style="margin-top: var(--space-2xl);">
+          <h2 class="section-title">Selected <strong>Destinations</strong></h2>
+        </div>
+
+        <!-- EXPANDED DESTINATION SECTIONS -->
+        
+        <!-- 1. Kolobrzeg -->
+        <article id="kolobrzeg" class="destination-detail">
+          <div class="destination-detail__header">
+            <img src="/assets/img/destinations/kolobrzeg/kolobrzeg.webp" alt="Kolobrzeg" class="destination-detail__image">
+            <div class="destination-detail__intro">
+              <span class="destination-detail__region">West Pomerania, Baltic Coast</span>
+              <h2 class="destination-detail__title">Kołobrzeg</h2>
+              <p class="destination-detail__tagline">For clients from NL/DE, this is a simple, safe formula: sea, fresh air, daily rhythm, plus spa treatments.</p>
+            </div>
+          </div>
+          
+          <div class="destination-detail__grid">
+            <div class="destination-detail__card">
+              <div class="destination-detail__icon">✦</div>
+              <h3 class="destination-detail__card-title">What makes it unique</h3>
+              <p class="destination-detail__text">The largest Polish spa resort combines maritime climate with rich natural healing resources. It's a place where rest truly meets therapy — with seaside walks and brine-based treatments.</p>
+            </div>
+            
+            <div class="destination-detail__card">
+              <div class="destination-detail__icon">⭐</div>
+              <h3 class="destination-detail__card-title">What it's famous for</h3>
+              <p class="destination-detail__text">Famous for its brines and peat as well as a microclimate saturated with sea aerosol. These resources form the basis of treatments used for respiratory and circulatory profiles.</p>
+            </div>
+            
+            <div class="destination-detail__card">
+              <div class="destination-detail__icon">◆</div>
+              <h3 class="destination-detail__card-title">What distinguishes it</h3>
+              <p class="destination-detail__text">A rare combination of spa and full-fledged seaside resort: wide beaches, promenades and urban infrastructure. You have access to nature at your fingertips — without feeling cut off from civilization.</p>
+            </div>
+            
+            <div class="destination-detail__card destination-detail__card--full">
+              <div class="destination-detail__icon">❤</div>
+              <h3 class="destination-detail__card-title">Why it's worth visiting</h3>
+              <p class="destination-detail__text">For clients from NL/DE, this is a simple, safe formula: sea, fresh air, daily rhythm, plus spa treatments. Ideal if you want to feel a noticeable difference in well-being without extreme plans.</p>
+            </div>
+          </div>
+          
+          <div class="destination-detail__fact">
+            <div class="destination-detail__fact-label">Did you know</div>
+            <p class="destination-detail__fact-text">The brine is sometimes called the "white gold" of Kołobrzeg.</p>
+          </div>
+          
+          <div class="destination-detail__gallery">
+            <div class="destination-detail__gallery-item destination-detail__gallery-item--main">
+              <img src="/assets/img/destinations/kolobrzeg/kolobrzeg.webp" alt="Kolobrzeg - main view">
+            </div>
+            <div class="destination-detail__gallery-item">
+              <img src="/assets/img/destinations/kolobrzeg/kolobrzeg_alt-1.webp" alt="Kolobrzeg">
+            </div>
+            <div class="destination-detail__gallery-item">
+              <img src="/assets/img/destinations/kolobrzeg/kolobrzeg1.webp" alt="Kolobrzeg">
+            </div>
+            <div class="destination-detail__gallery-item">
+              <img src="/assets/img/destinations/kolobrzeg/kolobrzeg2.webp" alt="Kolobrzeg">
+            </div>
+          </div>
+        </article>
+
+        <!-- 2. Swieradow-Zdroj -->
+        <article id="swieradow" class="destination-detail">
+          <div class="destination-detail__header">
+            <img src="/assets/img/destinations/swieradow/swieradow.webp" alt="Swieradow-Zdroj" class="destination-detail__image">
+            <div class="destination-detail__intro">
+              <span class="destination-detail__region">Lower Silesia, Izera Mountains</span>
+              <h2 class="destination-detail__title">Świeradów-Zdrój</h2>
+              <p class="destination-detail__tagline">For Western clients, this is a very good "Alpine feeling" at a fair price: mountains, fresh air, infrastructure and sensible treatment base.</p>
+            </div>
+          </div>
+          
+          <div class="destination-detail__grid">
+            <div class="destination-detail__card">
+              <div class="destination-detail__icon">✦</div>
+              <h3 class="destination-detail__card-title">What makes it unique</h3>
+              <p class="destination-detail__text">Swieradow stands out for its radon spa therapy and mountain climate of the Izera Mountains. It's a spa that excellently combines treatment with activity (walking, cycling, mountains).</p>
+            </div>
+            
+            <div class="destination-detail__card">
+              <div class="destination-detail__icon">⭐</div>
+              <h3 class="destination-detail__card-title">What it's famous for</h3>
+              <p class="destination-detail__text">Famous for its radon waters and status as one of the few radon spas in Europe. Additionally, it has strong "mountain" attractions like the gondola lift to Stóg Izerski.</p>
+            </div>
+            
+            <div class="destination-detail__card">
+              <div class="destination-detail__icon">◆</div>
+              <h3 class="destination-detail__card-title">What distinguishes it</h3>
+              <p class="destination-detail__text">Dynamic character: you can have a strictly spa stay, but also a regenerative-active stay. This is important for clients who don't tolerate "immobility" well.</p>
+            </div>
+            
+            <div class="destination-detail__card destination-detail__card--full">
+              <div class="destination-detail__icon">❤</div>
+              <h3 class="destination-detail__card-title">Why it's worth visiting</h3>
+              <p class="destination-detail__text">For Western clients, this is a very good "Alpine feeling" at a fair price: mountains, fresh air, infrastructure and sensible treatment base. Ideal for seasonal reset and rebuilding energy.</p>
+            </div>
+          </div>
+          
+          <div class="destination-detail__fact">
+            <div class="destination-detail__fact-label">Did you know</div>
+            <p class="destination-detail__fact-text">The Swieradow-Zdroj-Czerniawa spa is indicated as one of the few radon spas in Europe.</p>
+          </div>
+          
+          <div class="destination-detail__gallery">
+            <div class="destination-detail__gallery-item destination-detail__gallery-item--main">
+              <img src="/assets/img/destinations/swieradow/swieradow.webp" alt="Swieradow-Zdroj - main view">
+            </div>
+            <div class="destination-detail__gallery-item">
+              <img src="/assets/img/destinations/swieradow/swieradow_alt-1.webp" alt="Swieradow-Zdroj">
+            </div>
+            <div class="destination-detail__gallery-item">
+              <img src="/assets/img/destinations/swieradow/swieradow2.webp" alt="Swieradow-Zdroj">
+            </div>
+          </div>
+        </article>
+
+        <!-- 3. Polanica-Zdroj -->
+        <article id="polanica" class="destination-detail">
+          <div class="destination-detail__header">
+            <img src="/assets/img/destinations/polanica/polanica.webp" alt="Polanica-Zdroj" class="destination-detail__image">
+            <div class="destination-detail__intro">
+              <span class="destination-detail__region">Lower Silesia, Klodzka Valley</span>
+              <h2 class="destination-detail__title">Polanica-Zdrój</h2>
+              <p class="destination-detail__tagline">If the client wants rest in a classic spa-town style, without crowds and chaos, Polanica offers very predictable comfort.</p>
+            </div>
+          </div>
+          
+          <div class="destination-detail__grid">
+            <div class="destination-detail__card">
+              <div class="destination-detail__icon">✦</div>
+              <h3 class="destination-detail__card-title">What makes it unique</h3>
+              <p class="destination-detail__text">A very "elegant" Sudeten spa — peaceful, green, with a classic spa climate. Climatotherapy and the tradition of drinking halls/spa parks operate here.</p>
+            </div>
+            
+            <div class="destination-detail__card">
+              <div class="destination-detail__icon">⭐</div>
+              <h3 class="destination-detail__card-title">What it's famous for</h3>
+              <p class="destination-detail__text">Famous for its Spa Park and mineral waters. In the region, it is one of the most recognizable destinations for people seeking peaceful regeneration.</p>
+            </div>
+            
+            <div class="destination-detail__card">
+              <div class="destination-detail__icon">◆</div>
+              <h3 class="destination-detail__card-title">What distinguishes it</h3>
+              <p class="destination-detail__text">"Spa order" — everything is close, it's aesthetic, and the town's rhythm favors regeneration. Good base for trips to Klodzka Valley and surroundings.</p>
+            </div>
+            
+            <div class="destination-detail__card destination-detail__card--full">
+              <div class="destination-detail__icon">❤</div>
+              <h3 class="destination-detail__card-title">Why it's worth visiting</h3>
+              <p class="destination-detail__text">If the client wants rest in a classic spa-town style, without crowds and chaos, Polanica offers very predictable comfort. A safe direction for the first spa trip.</p>
+            </div>
+          </div>
+          
+          <div class="destination-detail__fact">
+            <div class="destination-detail__fact-label">Did you know</div>
+            <p class="destination-detail__fact-text">The city officially emphasizes favorable conditions for climatotherapy.</p>
+          </div>
+          
+          <div class="destination-detail__gallery">
+            <div class="destination-detail__gallery-item destination-detail__gallery-item--main">
+              <img src="/assets/img/destinations/polanica/polanica.webp" alt="Polanica-Zdroj - main view">
+            </div>
+            <div class="destination-detail__gallery-item">
+              <img src="/assets/img/destinations/polanica/polanica_alt-1.webp" alt="Polanica-Zdroj">
+            </div>
+            <div class="destination-detail__gallery-item">
+              <img src="/assets/img/destinations/polanica/polanica1.webp" alt="Polanica-Zdroj">
+            </div>
+            <div class="destination-detail__gallery-item">
+              <img src="/assets/img/destinations/polanica/polanica2.webp" alt="Polanica-Zdroj">
+            </div>
+          </div>
+        </article>
+
+        <!-- 4. Naleczow -->
+        <article id="naleczow" class="destination-detail">
+          <div class="destination-detail__header">
+            <img src="/assets/img/destinations/naleczow/naleczow.webp" alt="Naleczow" class="destination-detail__image">
+            <div class="destination-detail__intro">
+              <span class="destination-detail__region">Lublin Region</span>
+              <h2 class="destination-detail__title">Nałęczów</h2>
+              <p class="destination-detail__tagline">For premium clients, this is a great compromise: peace, nature, treatments and the possibility of mental rest.</p>
+            </div>
+          </div>
+          
+          <div class="destination-detail__grid">
+            <div class="destination-detail__card">
+              <div class="destination-detail__icon">✦</div>
+              <h3 class="destination-detail__card-title">What makes it unique</h3>
+              <p class="destination-detail__text">Naleczow is known for its microclimate and spa character focused on "resetting" the circulatory system. It's a spa that is simultaneously green, intimate and very "walkable".</p>
+            </div>
+            
+            <div class="destination-detail__card">
+              <div class="destination-detail__icon">⭐</div>
+              <h3 class="destination-detail__card-title">What it's famous for</h3>
+              <p class="destination-detail__text">Famous for its cardiological profile and microclimatic conditions, which are described as conducive to lowering blood pressure and improving well-being. The Spa Park and surroundings of ravines/loesses play a major role.</p>
+            </div>
+            
+            <div class="destination-detail__card">
+              <div class="destination-detail__icon">◆</div>
+              <h3 class="destination-detail__card-title">What distinguishes it</h3>
+              <p class="destination-detail__text">A spa with "soft energy": less medical severity, more comfort of everyday life, greenery and slow rhythm. Good for people who want regeneration but without a sense of "hospitalness".</p>
+            </div>
+            
+            <div class="destination-detail__card destination-detail__card--full">
+              <div class="destination-detail__icon">❤</div>
+              <h3 class="destination-detail__card-title">Why it's worth visiting</h3>
+              <p class="destination-detail__text">For premium clients, this is a great compromise: peace, nature, treatments and the possibility of mental rest. Ideal when the priority is stress, fatigue, prevention and harmonizing the rhythm of the day.</p>
+            </div>
+          </div>
+          
+          <div class="destination-detail__fact">
+            <div class="destination-detail__fact-label">Did you know</div>
+            <p class="destination-detail__fact-text">The spa emphasizes high air ionization, among other things, through terrain sculpture and vegetation.</p>
+          </div>
+          
+          <div class="destination-detail__gallery">
+            <div class="destination-detail__gallery-item destination-detail__gallery-item--main">
+              <img src="/assets/img/destinations/naleczow/naleczow.webp" alt="Naleczow - main view">
+            </div>
+            <div class="destination-detail__gallery-item">
+              <img src="/assets/img/destinations/naleczow/naleczow_alt-1.webp" alt="Naleczow">
+            </div>
+            <div class="destination-detail__gallery-item">
+              <img src="/assets/img/destinations/naleczow/naleczow1.webp" alt="Naleczow">
+            </div>
+            <div class="destination-detail__gallery-item">
+              <img src="/assets/img/destinations/naleczow/naleczow2.webp" alt="Naleczow">
+            </div>
+          </div>
+        </article>
+
+        <!-- 5. Busko-Zdroj -->
+        <article id="busko" class="destination-detail">
+          <div class="destination-detail__header">
+            <img src="/assets/img/destinations/busko/busko.webp" alt="Busko-Zdroj" class="destination-detail__image">
+            <div class="destination-detail__intro">
+              <span class="destination-detail__region">Swietokrzyskie</span>
+              <h2 class="destination-detail__title">Busko-Zdrój</h2>
+              <p class="destination-detail__tagline">If the goal is real improvement in movement comfort, regeneration, treatment program and peace — Busko is a very logical choice.</p>
+            </div>
+          </div>
+          
+          <div class="destination-detail__grid">
+            <div class="destination-detail__card">
+              <div class="destination-detail__icon">✦</div>
+              <h3 class="destination-detail__card-title">What makes it unique</h3>
+              <p class="destination-detail__text">One of the strongest "sulfur spas" in Poland — a spa with a clearly therapeutic rather than just recreational character. Treatments are based on unique sulfur waters and iodine brines.</p>
+            </div>
+            
+            <div class="destination-detail__card">
+              <div class="destination-detail__icon">⭐</div>
+              <h3 class="destination-detail__card-title">What it's famous for</h3>
+              <p class="destination-detail__text">Famous primarily for baths and therapies based on sulfur waters, associated with relief in rheumatic and degenerative conditions. This is a "specialty" that Busko has had in its DNA for years.</p>
+            </div>
+            
+            <div class="destination-detail__card">
+              <div class="destination-detail__icon">◆</div>
+              <h3 class="destination-detail__card-title">What distinguishes it</h3>
+              <p class="destination-detail__text">High concentration of spa infrastructure and peaceful, "therapeutic" rhythm of the town. For many clients this is a plus: fewer distractions, more consistency in regeneration.</p>
+            </div>
+            
+            <div class="destination-detail__card destination-detail__card--full">
+              <div class="destination-detail__icon">❤</div>
+              <h3 class="destination-detail__card-title">Why it's worth visiting</h3>
+              <p class="destination-detail__text">If the goal is real improvement in movement comfort, regeneration, treatment program and peace — Busko is a very logical choice. In practice: the client gets a clear stay plan and a sense of purpose for the trip.</p>
+            </div>
+          </div>
+          
+          <div class="destination-detail__fact">
+            <div class="destination-detail__fact-label">Did you know</div>
+            <p class="destination-detail__fact-text">Busko emphasizes two types of healing waters: sulfur waters and iodine-bromine brine.</p>
+          </div>
+          
+          <div class="destination-detail__gallery">
+            <div class="destination-detail__gallery-item destination-detail__gallery-item--main">
+              <img src="/assets/img/destinations/busko/busko.webp" alt="Busko-Zdroj - main view">
+            </div>
+            <div class="destination-detail__gallery-item">
+              <img src="/assets/img/destinations/busko/busko_alt-1.webp" alt="Busko-Zdroj">
+            </div>
+            <div class="destination-detail__gallery-item">
+              <img src="/assets/img/destinations/busko/busko1.webp" alt="Busko-Zdroj">
+            </div>
+          </div>
+        </article>
+
+        <!-- 6. Wieliczka -->
+        <article id="wieliczka" class="destination-detail">
+          <div class="destination-detail__header">
+            <img src="/assets/img/destinations/wieliczka/wieliczka.webp" alt="Wieliczka" class="destination-detail__image">
+            <div class="destination-detail__intro">
+              <span class="destination-detail__region">Lesser Poland, near Krakow</span>
+              <h2 class="destination-detail__title">Wieliczka</h2>
+              <p class="destination-detail__tagline">For a client who wants a shorter trip or first test of Poland: easy access, strong "must see" attraction and health element.</p>
+            </div>
+          </div>
+          
+          <div class="destination-detail__grid">
+            <div class="destination-detail__card">
+              <div class="destination-detail__icon">✦</div>
+              <h3 class="destination-detail__card-title">What makes it unique</h3>
+              <p class="destination-detail__text">Wieliczka is not a "typical spa" — its uniqueness comes from combining salt mine heritage with health offerings (salt microclimate / graduation tower). For clients, it makes an impression: a place with history and concrete experience.</p>
+            </div>
+            
+            <div class="destination-detail__card">
+              <div class="destination-detail__icon">⭐</div>
+              <h3 class="destination-detail__card-title">What it's famous for</h3>
+              <p class="destination-detail__text">World-famous for the Wieliczka Salt Mine, and in the health context — for the brine graduation tower and favorable inhalation microclimate. This is a simple, popular form of respiratory support.</p>
+            </div>
+            
+            <div class="destination-detail__card">
+              <div class="destination-detail__icon">◆</div>
+              <h3 class="destination-detail__card-title">What distinguishes it</h3>
+              <p class="destination-detail__text">Location: close to Krakow, so easy logistics and possibility to combine health stay with city break. This is a great direction for clients who want "health + culture" in one trip.</p>
+            </div>
+            
+            <div class="destination-detail__card destination-detail__card--full">
+              <div class="destination-detail__icon">❤</div>
+              <h3 class="destination-detail__card-title">Why it's worth visiting</h3>
+              <p class="destination-detail__text">For a client who wants a shorter trip or first test of Poland: easy access, strong "must see" attraction and health element. Great as an addition to other Lesser Poland destinations.</p>
+            </div>
+          </div>
+          
+          <div class="destination-detail__fact">
+            <div class="destination-detail__fact-label">Did you know</div>
+            <p class="destination-detail__fact-text">The graduation tower is in St. King's Park, right at the entrance to the mine zone.</p>
+          </div>
+          
+          <div class="destination-detail__gallery">
+            <div class="destination-detail__gallery-item destination-detail__gallery-item--main">
+              <img src="/assets/img/destinations/wieliczka/wieliczka.webp" alt="Wieliczka - main view">
+            </div>
+            <div class="destination-detail__gallery-item">
+              <img src="/assets/img/destinations/wieliczka/wieliczka_alt-1.webp" alt="Wieliczka">
+            </div>
+            <div class="destination-detail__gallery-item">
+              <img src="/assets/img/destinations/wieliczka/wieliczka2.webp" alt="Wieliczka">
+            </div>
+          </div>
+        </article>
+
+        <!-- 7. Polanczyk -->
+        <article id="polanczyk" class="destination-detail">
+          <div class="destination-detail__header">
+            <img src="/assets/img/destinations/polanczyk/polanczyk.webp" alt="Polanczyk" class="destination-detail__image">
+            <div class="destination-detail__intro">
+              <span class="destination-detail__region">Subcarpathia, Bieszczady (Lake Solinskie)</span>
+              <h2 class="destination-detail__title">Polańczyk</h2>
+              <p class="destination-detail__tagline">Ideal for a client who wants regeneration in nature, but not just "lying down".</p>
+            </div>
+          </div>
+          
+          <div class="destination-detail__grid">
+            <div class="destination-detail__card">
+              <div class="destination-detail__icon">✦</div>
+              <h3 class="destination-detail__card-title">What makes it unique</h3>
+              <p class="destination-detail__text">A spa on Lake Solinskie — a rare combination of foothill climate and water "like in a resort". The place has a clearly recreational and spa character simultaneously.</p>
+            </div>
+            
+            <div class="destination-detail__card">
+              <div class="destination-detail__icon">⭐</div>
+              <h3 class="destination-detail__card-title">What it's famous for</h3>
+              <p class="destination-detail__text">Famous for its location on Poland's largest artificial reservoir (Solinskie) and mineral waters used in treating various conditions. This is the largest spa and recreational center in the Bieszczady.</p>
+            </div>
+            
+            <div class="destination-detail__card">
+              <div class="destination-detail__icon">◆</div>
+              <h3 class="destination-detail__card-title">What distinguishes it</h3>
+              <p class="destination-detail__text">Views and "breath of space" — the Bieszczady do the job. Polanczyk also offers activity possibilities: walks, water, light trails — without extremes.</p>
+            </div>
+            
+            <div class="destination-detail__card destination-detail__card--full">
+              <div class="destination-detail__icon">❤</div>
+              <h3 class="destination-detail__card-title">Why it's worth visiting</h3>
+              <p class="destination-detail__text">Ideal for a client who wants regeneration in nature, but not just "lying down". In practice: treatments in the morning, lake/walk/light activity in the afternoon — and the person returns from the trip actually "refreshed".</p>
+            </div>
+          </div>
+          
+          <div class="destination-detail__fact">
+            <div class="destination-detail__fact-label">Did you know</div>
+            <p class="destination-detail__fact-text">Polańczyk lies on the western shore of Lake Solinskie and is the largest spa in the Bieszczady.</p>
+          </div>
+          
+          <div class="destination-detail__gallery">
+            <div class="destination-detail__gallery-item destination-detail__gallery-item--main">
+              <img src="/assets/img/destinations/polanczyk/polanczyk.webp" alt="Polanczyk - main view">
+            </div>
+            <div class="destination-detail__gallery-item">
+              <img src="/assets/img/destinations/polanczyk/polanczyk_alt-1.webp" alt="Polanczyk">
+            </div>
+            <div class="destination-detail__gallery-item">
+              <img src="/assets/img/destinations/polanczyk/polanczyk1.webp" alt="Polanczyk">
+            </div>
+            <div class="destination-detail__gallery-item">
+              <img src="/assets/img/destinations/polanczyk/polanczyk2.webp" alt="Polanczyk">
+            </div>
+            <div class="destination-detail__gallery-item">
+              <img src="/assets/img/destinations/polanczyk/polanczyk3.webp" alt="Polanczyk">
+            </div>
+          </div>
+        </article>
+
+        <!-- 8. Muszyna -->
+        <article id="muszyna" class="destination-detail">
+          <div class="destination-detail__header">
+            <img src="/assets/img/destinations/muszyna/muszyna.webp" alt="Muszyna" class="destination-detail__image">
+            <div class="destination-detail__intro">
+              <span class="destination-detail__region">Lesser Poland, Sącz Beskids (Poprad Valley)</span>
+              <h2 class="destination-detail__title">Muszyna</h2>
+              <p class="destination-detail__tagline">For tired people, this is the ideal reset: peaceful daily plan, nature, walks, mineral waters.</p>
+            </div>
+          </div>
+          
+          <div class="destination-detail__grid">
+            <div class="destination-detail__card">
+              <div class="destination-detail__icon">✦</div>
+              <h3 class="destination-detail__card-title">What makes it unique</h3>
+              <p class="destination-detail__text">Muszyna is a spa with a very pleasant "natural" climate, strongly connected with mineral waters and the peace of the Poprad Valley. It's excellent for regenerative stays with nature in the foreground.</p>
+            </div>
+            
+            <div class="destination-detail__card">
+              <div class="destination-detail__icon">⭐</div>
+              <h3 class="destination-detail__card-title">What it's famous for</h3>
+              <p class="destination-detail__text">Famous, among other things, for its Sensory Gardens — a very friendly and accessible attraction (also for people with movement limitations). It also has a clearly walking and family character.</p>
+            </div>
+            
+            <div class="destination-detail__card">
+              <div class="destination-detail__icon">◆</div>
+              <h3 class="destination-detail__card-title">What distinguishes it</h3>
+              <p class="destination-detail__text">A spa that combines "green relaxation" with places-experiences (gardens, viewpoints). For clients this is really felt: there's somewhere to breathe and somewhere to walk.</p>
+            </div>
+            
+            <div class="destination-detail__card destination-detail__card--full">
+              <div class="destination-detail__icon">❤</div>
+              <h3 class="destination-detail__card-title">Why it's worth visiting</h3>
+              <p class="destination-detail__text">For tired people, this is the ideal reset: peaceful daily plan, nature, walks, mineral waters. Plus: proximity to mountain trails without the pressure of "high mountain" challenges.</p>
+            </div>
+          </div>
+          
+          <div class="destination-detail__fact">
+            <div class="destination-detail__fact-label">Did you know</div>
+            <p class="destination-detail__fact-text">The Sensory Gardens are adapted, among other things, for wheelchairs and people with disabilities (paths, boards).</p>
+          </div>
+          
+          <div class="destination-detail__gallery">
+            <div class="destination-detail__gallery-item destination-detail__gallery-item--main">
+              <img src="/assets/img/destinations/muszyna/muszyna.webp" alt="Muszyna - main view">
+            </div>
+            <div class="destination-detail__gallery-item">
+              <img src="/assets/img/destinations/muszyna/muszyna_alt-1.webp" alt="Muszyna">
+            </div>
+            <div class="destination-detail__gallery-item">
+              <img src="/assets/img/destinations/muszyna/muszyna1.webp" alt="Muszyna">
+            </div>
+            <div class="destination-detail__gallery-item">
+              <img src="/assets/img/destinations/muszyna/Muszyna2.webp" alt="Muszyna">
+            </div>
+          </div>
+        </article>
+
+        <div class="text-center" style="margin-top: var(--space-2xl);">
+          <a href="/en/journey-form.html" class="btn btn-primary">Ask About Availability</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="/assets/js/includes.js"></script>
+  <script src="/assets/js/app.js"></script>
+</body>
+</html>

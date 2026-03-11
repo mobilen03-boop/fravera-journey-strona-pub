@@ -1,0 +1,244 @@
+.fv-map-wrapper {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  aspect-ratio: 6 / 5;
+  position: relative;
+}
+
+#fv-map {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.fv-map__shape {
+  fill: rgba(16, 19, 38, 0.55);
+  stroke: rgba(229, 201, 139, 0.55);
+  stroke-width: 1.5;
+}
+
+.fv-map__layer--markers circle.city {
+  fill: #E3E7EE;
+  opacity: 0.85;
+}
+
+.fv-map__layer--markers text.city {
+  fill: #E3E7EE;
+  font-size: 10px;
+  font-weight: 500;
+  font-family: system-ui, -apple-system, sans-serif;
+  pointer-events: none;
+}
+
+.fv-map__layer--markers .spa-group {
+  cursor: pointer;
+}
+
+.fv-map__layer--markers .spa-glow {
+  fill: rgba(229, 201, 139, 0.18);
+  stroke: rgba(229, 201, 139, 0.65);
+  stroke-width: 2;
+  transition: all 0.3s ease;
+}
+
+.fv-map__layer--markers .spa-core {
+  fill: #E3E7EE;
+  stroke: rgba(229, 201, 139, 0.35);
+  stroke-width: 2;
+  transition: all 0.3s ease;
+}
+
+.fv-map__layer--markers .spa-group:hover .spa-glow {
+  fill: rgba(229, 201, 139, 0.35);
+  stroke: rgba(229, 201, 139, 0.9);
+  r: 18;
+}
+
+.fv-map__layer--markers .spa-group:hover .spa-core {
+  fill: #fff;
+  r: 8;
+}
+
+.fv-map-tooltip {
+  position: absolute;
+  background: rgba(16, 19, 38, 0.95);
+  border: 1px solid rgba(229, 201, 139, 0.4);
+  border-radius: 12px;
+  padding: 0;
+  width: 260px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  z-index: 1000;
+  pointer-events: none;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+}
+
+.fv-map-tooltip.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.tooltip-image {
+  width: 100%;
+  height: 140px;
+  overflow: hidden;
+  border-radius: 12px 12px 0 0;
+}
+
+.tooltip-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.tooltip-content {
+  padding: 14px;
+}
+
+.tooltip-content h3 {
+  margin: 0 0 8px 0;
+  color: #E5C98B;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.tooltip-content p {
+  margin: 0 0 12px 0;
+  color: #E3E7EE;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.tooltip-link {
+  display: inline-block;
+  color: #E5C98B;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 500;
+  border-bottom: 1px solid rgba(229, 201, 139, 0.4);
+  transition: border-color 0.3s ease;
+}
+
+.tooltip-link:hover {
+  border-color: #E5C98B;
+}
+
+@media (max-width: 768px) {
+  .fv-map-wrapper {
+    aspect-ratio: 1 / 1;
+    max-width: 100%;
+  }
+  
+  .fv-map-tooltip {
+    width: 220px;
+  }
+  
+  .tooltip-image {
+    height: 120px;
+  }
+  
+  .tooltip-content {
+    padding: 12px;
+  }
+  
+  .tooltip-content h3 {
+    font-size: 14px;
+  }
+  
+  .tooltip-content p {
+    font-size: 12px;
+  }
+  
+  .fv-map__layer--markers text.city {
+    font-size: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .fv-map-wrapper {
+    aspect-ratio: 4 / 5;
+  }
+  
+  .fv-map-tooltip {
+    width: 180px;
+  }
+  
+  .tooltip-image {
+    height: 100px;
+  }
+}
+/* Map Tooltip Styles */
+.map-tooltip {
+  background: rgba(30, 30, 35, 0.95);
+  border: 1px solid rgba(229, 201, 139, 0.3);
+  border-radius: 8px;
+  padding: 12px 16px;
+  max-width: 250px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(10px);
+}
+
+.tooltip-content h4 {
+  color: #E5C98B;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 4px 0;
+}
+
+.tooltip-content .region {
+  display: inline-block;
+  background: rgba(229, 201, 139, 0.15);
+  color: #E5C98B;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+}
+
+.tooltip-content p {
+  color: rgba(227, 231, 238, 0.9);
+  font-size: 13px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Marker hover effect */
+.destination-marker:hover circle {
+  fill: #f0d9a0;
+}
+
+/* Pulse animation for markers */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+.destination-marker circle:nth-child(2) {
+  animation: pulse 1.5s ease-out infinite;
+}
+/* Tooltip bez linku - ukrywamy element linku */
+#tooltip-link {
+  display: none !important;
+}
+
+/* Opcjonalnie: wskaźnik że perła jest klikalna */
+.spa-group {
+  cursor: pointer;
+}
+
+/* Efekt po kliknięciu perły */
+.spa-group:active .spa-core {
+  fill: #E5C98B;
+  r: 6;
+}

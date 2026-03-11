@@ -1,0 +1,24 @@
+{
+  "name": "FraVeRa Journey",
+  "short_name": "FraVeRa",
+  "description": "Nature-based Wellness in Poland - Your local agent connecting Western Europe with premium health resorts",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0c1a",
+  "theme_color": "#e5c98b",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/assets/img/ogolne/0favicon.webp",
+      "sizes": "192x192",
+      "type": "image/webp"
+    },
+    {
+      "src": "/assets/img/ogolne/favicon.webp",
+      "sizes": "512x512",
+      "type": "image/webp"
+    }
+  ],
+  "lang": "en",
+  "dir": "ltr"
+}

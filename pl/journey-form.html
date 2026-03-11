@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rozpocznij podróż — FraVeRa Journey</title>
+  <meta name="description" content="Wypełnij formularz, aby rozpocząć swoją podróż regeneracji. Bezpłatna, niezobowiązująca konsultacja.">
+  <link rel="canonical" href="https://fravera-journey.com/pl/journey-form.html">
+  <link rel="alternate" hreflang="pl" href="https://fravera-journey.com/pl/journey-form.html">
+  <link rel="alternate" hreflang="en" href="https://fravera-journey.com/en/journey-form.html">
+  <link rel="alternate" hreflang="nl" href="https://fravera-journey.com/nl/journey-form.html">
+  <meta property="og:title" content="Rozpocznij podróż — FraVeRa Journey">
+  <meta property="og:description" content="Wypełnij formularz, aby rozpocząć swoją podróż regeneracji.">
+  <meta property="og:image" content="https://fravera-journey.com/assets/img/ogolne/og-preview.webp">
+  <meta property="og:url" content="https://fravera-journey.com/pl/journey-form.html">
+  <link rel="icon" type="image/png" href="/assets/img/ogolne/favicon.webp">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+<body>
+  <div id="header-placeholder"></div>
+
+  <main style="padding-top: 100px;">
+    <section class="section">
+      <div class="container container-narrow">
+        <div class="section-header">
+          <span class="section-label">Formularz kontaktowy</span>
+          <h1 class="section-title">Rozpocznij swoją <strong>podróż</strong></h1>
+          <p class="section-desc">
+            Wypełnij poniższy formularz, abyśmy mogli przygotować spersonalizowaną ofertę.
+            Odpowiadamy w ciągu 48 godzin.
+          </p>
+        </div>
+
+        <form 
+          action="https://usebasin.com/f/ce989cfdc5d2" 
+          method="POST" 
+          data-validate
+          class="form-container"
+          style="background: var(--color-bg-light); padding: var(--space-lg); border-radius: var(--radius-lg);"
+        >
+          <!-- Honeypot field (anti-spam) -->
+          <div class="honeypot">
+            <label for="website">Website</label>
+            <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+          </div>
+          
+          <!-- Timestamp for spam protection -->
+          <input type="hidden" name="timestamp" value="">
+          <script>document.querySelector('input[name="timestamp"]').value = Date.now();</script>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="firstName" class="form-label">
+                Imię <span class="required">*</span>
+              </label>
+              <input 
+                type="text" 
+                id="firstName" 
+                name="firstName" 
+                class="form-input" 
+                required
+                placeholder="Twoje imię"
+              >
+            </div>
+            
+            <div class="form-group">
+              <label for="lastName" class="form-label">
+                Nazwisko <span class="required">*</span>
+              </label>
+              <input 
+                type="text" 
+                id="lastName" 
+                name="lastName" 
+                class="form-input" 
+                required
+                placeholder="Twoje nazwisko"
+              >
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email" class="form-label">
+                Email <span class="required">*</span>
+              </label>
+              <input 
+                type="email" 
+                id="email" 
+                name="email" 
+                class="form-input" 
+                required
+                placeholder="twoj@email.com"
+              >
+            </div>
+            
+            <div class="form-group">
+              <label for="phone" class="form-label">
+                Telefon
+              </label>
+              <input 
+                type="tel" 
+                id="phone" 
+                name="phone" 
+                class="form-input"
+                placeholder="+31 6 1234 5678"
+              >
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="country" class="form-label">
+                Kraj zamieszkania <span class="required">*</span>
+              </label>
+              <select id="country" name="country" class="form-select" required>
+                <option value="">Wybierz kraj</option>
+                <option value="nl">Holandia</option>
+                <option value="be">Belgia</option>
+                <option value="de">Niemcy</option>
+                <option value="uk">Wielka Brytania</option>
+                <option value="other">Inny</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="serviceLevel" class="form-label">
+                Poziom usługi
+              </label>
+              <select id="serviceLevel" name="serviceLevel" class="form-select">
+                <option value="">Wybierz poziom</option>
+                <option value="basic">Basic (€90-120)</option>
+                <option value="comfort">Comfort (€210-270)</option>
+                <option value="premium">Premium (€350-440)</option>
+                <option value="not-sure">Nie wiem, potrzebuję doradztwa</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="travelDate" class="form-label">
+                Preferowany termin podróży
+              </label>
+              <input 
+                type="date" 
+                id="travelDate" 
+                name="travelDate" 
+                class="form-input"
+              >
+            </div>
+            
+            <div class="form-group">
+              <label for="duration" class="form-label">
+                Planowana długość pobytu
+              </label>
+              <select id="duration" name="duration" class="form-select">
+                <option value="">Wybierz długość</option>
+                <option value="7">7 dni</option>
+                <option value="10">10 dni</option>
+                <option value="14">14 dni</option>
+                <option value="21">21 dni</option>
+                <option value="other">Inna</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="healthNeeds" class="form-label">
+              Potrzeby zdrowotne / preferencje
+            </label>
+            <textarea 
+              id="healthNeeds" 
+              name="healthNeeds" 
+              class="form-textarea"
+              placeholder="Opisz krótko swoje potrzeby zdrowotne (np. problemy z kręgosłupem, układem oddechowym, regeneracja po chorobie) lub preferencje dotyczące pobytu..."
+            ></textarea>
+            <p class="form-hint">Te informacje pomogą nam dopasować najlepszy obiekt dla Ciebie.</p>
+          </div>
+
+          <div class="form-group">
+            <label for="message" class="form-label">
+              Dodatkowe informacje
+            </label>
+            <textarea 
+              id="message" 
+              name="message" 
+              class="form-textarea"
+              placeholder="Czy masz jakieś dodatkowe pytania lub wymagania?"
+            ></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-check">
+              <input type="checkbox" name="consent" class="form-check-input" required>
+              <span class="form-check-label">
+                Wyrażam zgodę na przetwarzanie moich danych osobowych w celu przygotowania oferty. 
+                Zapoznałem/am się z <a href="/pl/privacy.html" target="_blank">Polityką Prywatności</a>.
+                <span class="required">*</span>
+              </span>
+            </label>
+          </div>
+
+          <div class="form-group">
+            <label class="form-check">
+              <input type="checkbox" name="newsletter" class="form-check-input">
+              <span class="form-check-label">
+                Chcę otrzymywać informacje o promocjach i nowościach (opcjonalne).
+              </span>
+            </label>
+          </div>
+
+          <div class="form-group" style="margin-top: var(--space-lg);">
+            <button type="submit" class="btn btn-primary" style="width: 100%;">
+              Wyślij zapytanie
+            </button>
+            <p class="form-hint text-center" style="margin-top: var(--space-sm);">
+              Odpowiadamy w ciągu 48 godzin. Twoje dane są bezpieczne.
+            </p>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="/assets/js/includes.js"></script>
+  <script src="/assets/js/app.js"></script>
+</body>
+</html>

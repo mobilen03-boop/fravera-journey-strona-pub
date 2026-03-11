@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Destynacje — FraVeRa Journey</title>
+  <meta name="description" content="Odkryj polskie uzdrowiska: Kołobrzeg, Świeradów-Zdrój, Polanica-Zdrój, Nałęczów, Busko-Zdrój i wiele innych.">
+  <link rel="canonical" href="https://fravera-journey.com/pl/destinations.html">
+  <link rel="alternate" hreflang="pl" href="https://fravera-journey.com/pl/destinations.html">
+  <link rel="alternate" hreflang="en" href="https://fravera-journey.com/en/destinations.html">
+  <link rel="alternate" hreflang="nl" href="https://fravera-journey.com/nl/destinations.html">
+  <link rel="icon" type="image/png" href="/assets/img/ogolne/favicon.webp">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <link rel="stylesheet" href="/assets/map1/map.css">
+  <style>
+    /* Style dla rozbudowanych sekcji destynacji */
+    .destination-detail {
+      padding: var(--space-2xl) 0;
+      border-bottom: 1px solid rgba(229, 201, 139, 0.1);
+    }
+    
+    .destination-detail:last-child {
+      border-bottom: none;
+    }
+    
+    .destination-detail__header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-xl);
+      align-items: center;
+      margin-bottom: var(--space-xl);
+    }
+    
+    .destination-detail__image {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      border-radius: var(--radius-lg);
+    }
+    
+    .destination-detail__intro {
+      padding: var(--space-lg);
+    }
+    
+    .destination-detail__region {
+      display: inline-block;
+      background: rgba(229, 201, 139, 0.15);
+      color: #E5C98B;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: var(--space-sm);
+    }
+    
+    .destination-detail__title {
+      font-size: 36px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: var(--space-md);
+    }
+    
+    .destination-detail__tagline {
+      font-size: 18px;
+      color: rgba(227, 231, 238, 0.9);
+      line-height: 1.6;
+    }
+    
+    .destination-detail__grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-lg);
+      margin-bottom: var(--space-xl);
+    }
+    
+    .destination-detail__card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(229, 201, 139, 0.15);
+      border-radius: var(--radius-md);
+      padding: var(--space-lg);
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+    
+    .destination-detail__card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(229, 201, 139, 0.3);
+    }
+    
+    .destination-detail__card--full {
+      grid-column: 1 / -1;
+      background: linear-gradient(135deg, rgba(229, 201, 139, 0.08) 0%, rgba(229, 201, 139, 0.02) 100%);
+    }
+    
+    .destination-detail__icon {
+      font-size: 24px;
+      margin-bottom: var(--space-sm);
+    }
+    
+    .destination-detail__card-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: #E5C98B;
+      margin-bottom: var(--space-sm);
+    }
+    
+    .destination-detail__text {
+      font-size: 14px;
+      line-height: 1.7;
+      color: rgba(227, 231, 238, 0.85);
+      margin: 0;
+    }
+    
+    .destination-detail__fact {
+      background: rgba(229, 201, 139, 0.1);
+      border-left: 4px solid #E5C98B;
+      padding: var(--space-md) var(--space-lg);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      margin: var(--space-lg) 0;
+    }
+    
+    .destination-detail__fact-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #E5C98B;
+      margin-bottom: 6px;
+    }
+    
+    .destination-detail__fact-text {
+      font-size: 16px;
+      font-weight: 500;
+      color: #fff;
+      margin: 0;
+    }
+    
+    .destination-detail__gallery {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-md);
+      margin-top: var(--space-lg);
+    }
+    
+    .destination-detail__gallery-item {
+      aspect-ratio: 4 / 3;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+    
+    .destination-detail__gallery-item--main {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+    
+    .destination-detail__gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+    
+    .destination-detail__gallery-item:hover img {
+      transform: scale(1.05);
+    }
+    
+    @media (max-width: 968px) {
+      .destination-detail__header {
+        grid-template-columns: 1fr;
+      }
+      
+      .destination-detail__image {
+        height: 300px;
+      }
+      
+      .destination-detail__grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      
+      .destination-detail__gallery {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .destination-detail__gallery-item--main {
+        grid-column: span 2;
+        grid-row: span 1;
+      }
+    }
+    
+    @media (max-width: 640px) {
+      .destination-detail__title {
+        font-size: 28px;
+      }
+      
+      .destination-detail__grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .destination-detail__gallery {
+        grid-template-columns: 1fr;
+      }
+      
+      .destination-detail__gallery-item--main {
+        grid-column: span 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="header-placeholder"></div>
+
+  <main style="padding-top: 100px;">
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">Destynacje</span>
+          <h1 class="section-title">Mapa <strong>regeneracji</strong></h1>
+          <p class="section-desc">
+            To nie jest mapa sprzedaży. To mapa decyzji: gdzie cisza, klimat i naturalny potencjał spotykają Twoje potrzeby.
+          </p>
+        </div>
+
+        <!-- Interactive Map -->
+        <div style="margin-bottom: var(--space-xl);">
+          <iframe src="/assets/map1/map.html?lang=pl" style="width: 100%; height: 600px; border: none; border-radius: var(--radius-lg);" title="Mapa uzdrowisk Polski"></iframe>
+        </div>
+
+        <div class="section-header" style="margin-top: var(--space-2xl);">
+          <h2 class="section-title">Wybrane <strong>destynacje</strong></h2>
+        </div>
+
+        <!-- ROZBUDOWANE SEKCJE DESTYNACJI -->
+        
+        <!-- 1. Kołobrzeg -->
+        <article id="kolobrzeg" class="destination-detail">
+          <div class="destination-detail__header">
+            <img src="/assets/img/destinations/kolobrzeg/kolobrzeg.webp" alt="Kołobrzeg" class="destination-detail__image">
+            <div class="destination-detail__intro">
+              <span class="destination-detail__region">Zachodniopomorskie, Wybrzeże Bałtyku</span>
+              <h2 class="destination-detail__title">Kołobrzeg</h2>
+              <p class="destination-detail__tagline">Dla klienta z NL/DE to prosta, bezpieczna formuła: morze, świeże powietrze, rytm dnia, a do tego procedury uzdrowiskowe.</p>
+            </div>
+          </div>
+          
+          <div class="destination-detail__grid">
+            <div class="destination-detail__card">
+              <div class="destination-detail__icon">✦</div>
+              <h3 class="destination-detail__card-title">Co w nim wyjątkowe</h3>
+              <p class="destination-detail__text">Największy polski kurort uzdrowiskowy łączy klimat morski z bogactwem naturalnych surowców leczniczych. To miejsce, gdzie wypoczynek realnie spotyka się z terapią - spacerami nad morzem i zabiegami na bazie solanki.</p>
+            </div>
+            
+            <div class="destination-detail__card">
+              <div class="destination-detail__icon">⭐</div>
+              <h3 class="destination-detail__card-title">Z czego słynie</h3>
+              <p class="destination-detail__text">Słynie z solanek i borowin oraz mikroklimatu nasyconego aerozolem morskim. Te zasoby są podstawą zabiegów wykorzystywanych m.in. w profilach oddechowych i krążeniowych.</p>
+            </div>
+            
+            <div class="destination-detail__card">
+              <div class="destination-detail__icon">◆</div>
+              <h3 class="destination-detail__card-title">Co go wyróżnia</h3>
+              <p class="destination-detail__text">Rzadkie połączenie uzdrowiska i pełnoprawnego kurortu nadmorskiego: szerokie plaże, promenady i infrastruktura miejska. Masz dostęp do natury od ręki - bez poczucia odcięcia od cywilizacji.</p>
+            </div>
+            
+            <div class="destination-detail__card destination-detail__card--full">
+              <div class="destination-detail__icon">❤</div>
+              <h3 class="destination-detail__card-title">Dlaczego warto pojechać</h3>
+              <p class="destination-detail__text">Dla klienta z NL/DE to prosta, bezpieczna formuła: morze, świeże powietrze, rytm dnia, a do tego procedury uzdrowiskowe. Idealne, jeśli chcesz poczuć wyraźną różnicę w samopoczuciu bez ekstremalnych planów.</p>
+            </div>
+          </div>
+          
+          <div class="destination-detail__fact">
+            <div class="destination-detail__fact-label">Ciekawostka</div>
+            <p class="destination-detail__fact-text">Solanka bywa nazywana "białym złotem" Kołobrzegu.</p>
+          </div>
+          
+          <div class="destination-detail__gallery">
+            <div class="destination-detail__gallery-item destination-detail__gallery-item--main">
+              <img src="/assets/img/destinations/kolobrzeg/kolobrzeg.webp" alt="Kołobrzeg - widok główny">
+            </div>
+            <div class="destination-detail__gallery-item">
+              <img src="/assets/img/destinations/kolobrzeg/kolobrzeg_alt-1.webp" alt="Kołobrzeg">
+            </div>
+            <div class="destination-detail__gallery-item">
+              <img src="/assets/img/destinations/kolobrzeg/kolobrzeg1.webp" alt="Kołobrzeg">
+            </div>
+            <div class="destination-detail__gallery-item">
+              <img src="/assets/img/destinations/kolobrzeg/kolobrzeg2.webp" alt="Kołobrzeg">
+            </div>
+          </div>
+        </article>
+
+        <!-- 2. Świeradów-Zdrój -->
+        <article id="swieradow" class="destination-detail">
+          <div class="destination-detail__header">
+            <img src="/assets/img/destinations/swieradow/swieradow.webp" alt="Świeradów-Zdrój" class="destination-detail__image">
+            <div class="destination-detail__intro">
+              <span class="destination-detail__region">Dolnośląskie, Góry Izerskie</span>
+              <h2 class="destination-detail__title">Świeradów-Zdrój</h2>
+              <p class="destination-detail__tagline">Dla klienta z Zachodu to bardzo dobry "alpejski feeling" w uczciwej cenie: góry, świeże powietrze, infrastruktura i sensowna baza zabiegowa.</p>
+            </div>
+          </div>
+          
+          <div class="destination-detail__grid">
+            <div class="destination-detail__card">
+              <div class="destination-detail__icon">✦</div>
+              <h3 class="destination-detail__card-title">Co w nim wyjątkowe</h3>
+              <p class="destination-detail__text">Świeradów wyróżnia się uzdrowiskową terapią radonową i górskim klimatem Izer. To uzdrowisko, które świetnie łączy leczenie z aktywnością (spacery, rower, góry).</p>
+            </div>
+            
+            <div class="destination-detail__card">
+              <div class="destination-detail__icon">⭐</div>
+              <h3 class="destination-detail__card-title">Z czego słynie</h3>
+              <p class="destination-detail__text">Słynie z wód radonowych / radoczynnych i statusu jednego z nielicznych uzdrowisk radonowych w Europie. Dodatkowo ma mocne "górskie" atrakcje jak kolej gondolowa na Stóg Izerski.</p>
+            </div>
+            
+            <div class="destination-detail__card">
+              <div class="destination-detail__icon">◆</div>
+              <h3 class="destination-detail__card-title">Co go wyróżnia</h3>
+              <p class="destination-detail__text">Dynamiczny charakter: możesz mieć pobyt stricte uzdrowiskowy, ale też pobyt regeneracyjno-aktywny. To ważne dla klientów, którzy źle znoszą "bezruch".</p>
+            </div>
+            
+            <div class="destination-detail__card destination-detail__card--full">
+              <div class="destination-detail__icon">❤</div>
+              <h3 class="destination-detail__card-title">Dlaczego warto pojechać</h3>
+              <p class="destination-detail__text">Dla klienta z Zachodu to bardzo dobry "alpejski feeling" w uczciwej cenie: góry, świeże powietrze, infrastruktura i sensowna baza zabiegowa. Idealne na reset sezonowy i odbudowę energii.</p>
+            </div>
+          </div>
+          
+          <div class="destination-detail__fact">
+            <div class="destination-detail__fact-label">Ciekawostka</div>
+            <p class="destination-detail__fact-text">Uzdrowisko Świeradów-Zdrój-Czerniawa jest wskazywane jako jedno z niewielu uzdrowisk radonowych w Europie.</p>
+          </div>
+          
+          <div class="destination-detail__gallery">
+            <div class="destination-detail__gallery-item destination-detail__gallery-item--main">
+              <img src="/assets/img/destinations/swieradow/swieradow.webp" alt="Świeradów-Zdrój - widok główny">
+            </div>
+            <div class="destination-detail__gallery-item">
+              <img src="/assets/img/destinations/swieradow/swieradow_alt-1.webp" alt="Świeradów-Zdrój">
+            </div>
+            <div class="destination-detail__gallery-item">
+              <img src="/assets/img/destinations/swieradow/swieradow2.webp" alt="Świeradów-Zdrój">
+            </div>
+          </div>
+        </article>
+
+        <!-- 3. Polanica-Zdrój -->
+        <article id="polanica" class="destination-detail">
+          <div class="destination-detail__header">
+            <img src="/assets/img/destinations/polanica/polanica.webp" alt="Polanica-Zdrój" class="destination-detail__image">
+            <div class="destination-detail__intro">
+              <span class="destination-detail__region">Dolnośląskie, Kotlina Kłodzka</span>
+              <h2 class="destination-detail__title">Polanica-Zdrój</h2>
+              <p class="destination-detail__tagline">Jeśli klient chce odpoczynku w stylu klasycznego spa-town, bez tłoku i bez chaosu, Polanica daje bardzo przewidywalny komfort.</p>
+            </div>
+          </div>
+          
+          <div class="destination-detail__grid">
+            <div class="destination-detail__card">
+              <div class="destination-detail__icon">✦</div>
+              <h3 class="destination-detail__card-title">Co w niej wyjątkowe</h3>
+              <p class="destination-detail__text">Bardzo "elegancki" kurort sudecki - spokojny, zielony, z klasycznym klimatem uzdrowiskowym. Działa tu klimatoterapia i tradycja pijalni/parków zdrojowych.</p>
+            </div>
+            
+            <div class="destination-detail__card">
+              <div class="destination-detail__icon">⭐</div>
+              <h3 class="destination-detail__card-title">Z czego słynie</h3>
+              <p class="destination-detail__text">Słynie z Parku Zdrojowego i wód mineralnych. W regionie jest to jeden z najbardziej rozpoznawalnych kierunków dla osób szukających spokojnej regeneracji.</p>
+            </div>
+            
+            <div class="destination-detail__card">
+              <div class="destination-detail__icon">◆</div>
+              <h3 class="destination-detail__card-title">Co ją wyróżnia</h3>
+              <p class="destination-detail__text">"Kurortowy ład" - wszystko jest blisko, jest estetycznie, a rytm miasteczka sprzyja regeneracji. Dobra baza wypadowa do Kotliny Kłodzkiej i okolic.</p>
+            </div>
+            
+            <div class="destination-detail__card destination-detail__card--full">
+              <div class="destination-detail__icon">❤</div>
+              <h3 class="destination-detail__card-title">Dlaczego warto pojechać</h3>
+              <p class="destination-detail__text">Jeśli klient chce odpoczynku w stylu klasycznego spa-town, bez tłoku i bez chaosu, Polanica daje bardzo przewidywalny komfort. To kierunek bezpieczny dla pierwszego wyjazdu uzdrowiskowego.</p>
+            </div>
+          </div>
+          
+          <div class="destination-detail__fact">
+            <div class="destination-detail__fact-label">Ciekawostka</div>
+            <p class="destination-detail__fact-text">Miasto oficjalnie podkreśla korzystne warunki do klimatoterapii.</p>
+          </div>
+          
+          <div class="destination-detail__gallery">
+            <div class="destination-detail__gallery-item destination-detail__gallery-item--main">
+              <img src="/assets/img/destinations/polanica/polanica.webp" alt="Polanica-Zdrój - widok główny">
+            </div>
+            <div class="destination-detail__gallery-item">
+              <img src="/assets/img/destinations/polanica/polanica_alt-1.webp" alt="Polanica-Zdrój">
+            </div>
+            <div class="destination-detail__gallery-item">
+              <img src="/assets/img/destinations/polanica/polanica1.webp" alt="Polanica-Zdrój">
+            </div>
+            <div class="destination-detail__gallery-item">
+              <img src="/assets/img/destinations/polanica/polanica2.webp" alt="Polanica-Zdrój">
+            </div>
+          </div>
+        </article>
+
+        <!-- 4. Nałęczów -->
+        <article id="naleczow" class="destination-detail">
+          <div class="destination-detail__header">
+            <img src="/assets/img/destinations/naleczow/naleczow.webp" alt="Nałęczów" class="destination-detail__image">
+            <div class="destination-detail__intro">
+              <span class="destination-detail__region">Lubelskie</span>
+              <h2 class="destination-detail__title">Nałęczów</h2>
+              <p class="destination-detail__tagline">Dla klienta premium to świetny kompromis: spokój, natura, zabiegi i możliwość odpoczynku mentalnego.</p>
+            </div>
+          </div>
+          
+          <div class="destination-detail__grid">
+            <div class="destination-detail__card">
+              <div class="destination-detail__icon">✦</div>
+              <h3 class="destination-detail__card-title">Co w nim wyjątkowe</h3>
+              <p class="destination-detail__text">Nałęczów jest znany z mikroklimatu i uzdrowiskowego charakteru nastawionego na "reset" układu krążenia. To uzdrowisko, które jest jednocześnie zielone, kameralne i bardzo "spacerowe".</p>
+            </div>
+            
+            <div class="destination-detail__card">
+              <div class="destination-detail__icon">⭐</div>
+              <h3 class="destination-detail__card-title">Z czego słynie</h3>
+              <p class="destination-detail__text">Słynie z profilu kardiologicznego oraz warunków mikroklimatycznych, które bywają opisywane jako sprzyjające obniżaniu ciśnienia i poprawie samopoczucia. Dużą rolę gra Park Zdrojowy i otoczenie wąwozów/lessów.</p>
+            </div>
+            
+            <div class="destination-detail__card">
+              <div class="destination-detail__icon">◆</div>
+              <h3 class="destination-detail__card-title">Co go wyróżnia</h3>
+              <p class="destination-detail__text">To uzdrowisko o "miękkiej energii": mniej medycznej surowości, więcej komfortu codzienności, zieleni i rytmu slow. Dobre dla osób, które chcą regeneracji, ale bez poczucia "szpitalności".</p>
+            </div>
+            
+            <div class="destination-detail__card destination-detail__card--full">
+              <div class="destination-detail__icon">❤</div>
+              <h3 class="destination-detail__card-title">Dlaczego warto pojechać</h3>
+              <p class="destination-detail__text">Dla klienta premium to świetny kompromis: spokój, natura, zabiegi i możliwość odpoczynku mentalnego. Idealne, gdy priorytetem jest stres, zmęczenie, profilaktyka i harmonizacja rytmu dnia.</p>
+            </div>
+          </div>
+          
+          <div class="destination-detail__fact">
+            <div class="destination-detail__fact-label">Ciekawostka</div>
+            <p class="destination-detail__fact-text">Uzdrowisko podkreśla wysoką jonizację powietrza m.in. przez rzeźbę terenu i roślinność.</p>
+          </div>
+          
+          <div class="destination-detail__gallery">
+            <div class="destination-detail__gallery-item destination-detail__gallery-item--main">
+              <img src="/assets/img/destinations/naleczow/naleczow.webp" alt="Nałęczów - widok główny">
+            </div>
+            <div class="destination-detail__gallery-item">
+              <img src="/assets/img/destinations/naleczow/naleczow_alt-1.webp" alt="Nałęczów">
+            </div>
+            <div class="destination-detail__gallery-item">
+              <img src="/assets/img/destinations/naleczow/naleczow1.webp" alt="Nałęczów">
+            </div>
+            <div class="destination-detail__gallery-item">
+              <img src="/assets/img/destinations/naleczow/naleczow2.webp" alt="Nałęczów">
+            </div>
+          </div>
+        </article>
+
+        <!-- 5. Busko-Zdrój -->
+        <article id="busko" class="destination-detail">
+          <div class="destination-detail__header">
+            <img src="/assets/img/destinations/busko/busko.webp" alt="Busko-Zdrój" class="destination-detail__image">
+            <div class="destination-detail__intro">
+              <span class="destination-detail__region">Świętokrzyskie</span>
+              <h2 class="destination-detail__title">Busko-Zdrój</h2>
+              <p class="destination-detail__tagline">Jeśli celem jest realna poprawa komfortu ruchu, regeneracja, program zabiegów i spokój - Busko jest bardzo logicznym wyborem.</p>
+            </div>
+          </div>
+          
+          <div class="destination-detail__grid">
+            <div class="destination-detail__card">
+              <div class="destination-detail__icon">✦</div>
+              <h3 class="destination-detail__card-title">Co w nim wyjątkowe</h3>
+              <p class="destination-detail__text">To jeden z najmocniejszych "zdrojów siarki" w Polsce - uzdrowisko o wyraźnie terapeutycznym charakterze, a nie tylko wypoczynkowym. Kuracje opierają się na unikalnych wodach siarczkowych i solankach jodkowych.</p>
+            </div>
+            
+            <div class="destination-detail__card">
+              <div class="destination-detail__icon">⭐</div>
+              <h3 class="destination-detail__card-title">Z czego słynie</h3>
+              <p class="destination-detail__text">Słynie przede wszystkim z kąpieli i terapii na bazie wód siarczkowych, kojarzonych z ulgą w schorzeniach reumatycznych i zwyrodnieniowych. To "specjalizacja", którą Busko ma od lat w DNA.</p>
+            </div>
+            
+            <div class="destination-detail__card">
+              <div class="destination-detail__icon">◆</div>
+              <h3 class="destination-detail__card-title">Co go wyróżnia</h3>
+              <p class="destination-detail__text">Wysoka koncentracja uzdrowiskowej infrastruktury i spokojny, "leczniczy" rytm miasteczka. Dla wielu klientów to plus: mniej rozpraszaczy, więcej konsekwencji w regeneracji.</p>
+            </div>
+            
+            <div class="destination-detail__card destination-detail__card--full">
+              <div class="destination-detail__icon">❤</div>
+              <h3 class="destination-detail__card-title">Dlaczego warto pojechać</h3>
+              <p class="destination-detail__text">Jeśli celem jest realna poprawa komfortu ruchu, regeneracja, program zabiegów i spokój - Busko jest bardzo logicznym wyborem. W praktyce: klient dostaje jasny plan pobytu i poczucie sensu wyjazdu.</p>
+            </div>
+          </div>
+          
+          <div class="destination-detail__fact">
+            <div class="destination-detail__fact-label">Ciekawostka</div>
+            <p class="destination-detail__fact-text">Busko podkreśla dwa typy wód leczniczych: siarczkowe oraz solankę jodkowo-bromkową.</p>
+          </div>
+          
+          <div class="destination-detail__gallery">
+            <div class="destination-detail__gallery-item destination-detail__gallery-item--main">
+              <img src="/assets/img/destinations/busko/busko.webp" alt="Busko-Zdrój - widok główny">
+            </div>
+            <div class="destination-detail__gallery-item">
+              <img src="/assets/img/destinations/busko/busko_alt-1.webp" alt="Busko-Zdrój">
+            </div>
+            <div class="destination-detail__gallery-item">
+              <img src="/assets/img/destinations/busko/busko1.webp" alt="Busko-Zdrój">
+            </div>
+          </div>
+        </article>
+
+        <!-- 6. Wieliczka -->
+        <article id="wieliczka" class="destination-detail">
+          <div class="destination-detail__header">
+            <img src="/assets/img/destinations/wieliczka/wieliczka.webp" alt="Wieliczka" class="destination-detail__image">
+            <div class="destination-detail__intro">
+              <span class="destination-detail__region">Małopolskie, okolice Krakowa</span>
+              <h2 class="destination-detail__title">Wieliczka</h2>
+              <p class="destination-detail__tagline">Dla klienta, który chce krótszy wyjazd lub pierwszy test Polski: łatwy dojazd, mocna atrakcja "must see" i element zdrowotny.</p>
+            </div>
+          </div>
+          
+          <div class="destination-detail__grid">
+            <div class="destination-detail__card">
+              <div class="destination-detail__icon">✦</div>
+              <h3 class="destination-detail__card-title">Co w niej wyjątkowe</h3>
+              <p class="destination-detail__text">Wieliczka to nie "typowe uzdrowisko" - jej unikalność wynika z połączenia dziedzictwa kopalni soli z ofertą zdrowotną (mikroklimat solny / tężnia). Dla klientów robi wrażenie: to miejsce z historią i konkretnym doświadczeniem.</p>
+            </div>
+            
+            <div class="destination-detail__card">
+              <div class="destination-detail__icon">⭐</div>
+              <h3 class="destination-detail__card-title">Z czego słynie</h3>
+              <p class="destination-detail__text">Słynie na świecie z Kopalni Soli "Wieliczka", a w kontekście zdrowia - z tężni solankowej i korzystnego mikroklimatu inhalacyjnego. To prosta, popularna forma wsparcia oddechu.</p>
+            </div>
+            
+            <div class="destination-detail__card">
+              <div class="destination-detail__icon">◆</div>
+              <h3 class="destination-detail__card-title">Co ją wyróżnia</h3>
+              <p class="destination-detail__text">Położenie: blisko Krakowa, więc łatwa logistyka i możliwość połączenia pobytu zdrowotnego z city-breakiem. To kierunek świetny dla klientów, którzy chcą "zdrowie + kultura" w jednym wyjeździe.</p>
+            </div>
+            
+            <div class="destination-detail__card destination-detail__card--full">
+              <div class="destination-detail__icon">❤</div>
+              <h3 class="destination-detail__card-title">Dlaczego warto pojechać</h3>
+              <p class="destination-detail__text">Dla klienta, który chce krótszy wyjazd lub pierwszy test Polski: łatwy dojazd, mocna atrakcja "must see" i element zdrowotny. Świetne jako dodatek do innych destynacji Małopolski.</p>
+            </div>
+          </div>
+          
+          <div class="destination-detail__fact">
+            <div class="destination-detail__fact-label">Ciekawostka</div>
+            <p class="destination-detail__fact-text">Tężnia jest w Parku św. Kingi, tuż przy wejściu do strefy kopalni.</p>
+          </div>
+          
+          <div class="destination-detail__gallery">
+            <div class="destination-detail__gallery-item destination-detail__gallery-item--main">
+              <img src="/assets/img/destinations/wieliczka/wieliczka.webp" alt="Wieliczka - widok główny">
+            </div>
+            <div class="destination-detail__gallery-item">
+              <img src="/assets/img/destinations/wieliczka/wieliczka_alt-1.webp" alt="Wieliczka">
+            </div>
+            <div class="destination-detail__gallery-item">
+              <img src="/assets/img/destinations/wieliczka/wieliczka2.webp" alt="Wieliczka">
+            </div>
+          </div>
+        </article>
+
+        <!-- 7. Polańczyk -->
+        <article id="polanczyk" class="destination-detail">
+          <div class="destination-detail__header">
+            <img src="/assets/img/destinations/polanczyk/polanczyk.webp" alt="Polańczyk" class="destination-detail__image">
+            <div class="destination-detail__intro">
+              <span class="destination-detail__region">Podkarpackie, Bieszczady (Jezioro Solińskie)</span>
+              <h2 class="destination-detail__title">Polańczyk</h2>
+              <p class="destination-detail__tagline">Idealne dla klienta, który chce regeneracji w naturze, ale nie tylko "leżenia".</p>
+            </div>
+          </div>
+          
+          <div class="destination-detail__grid">
+            <div class="destination-detail__card">
+              <div class="destination-detail__icon">✦</div>
+              <h3 class="destination-detail__card-title">Co w nim wyjątkowe</h3>
+              <p class="destination-detail__text">To uzdrowisko nad Jeziorem Solińskim - rzadkie połączenie klimatu podgórskiego i wody "jak w kurorcie". Miejsce ma wyraźny charakter wypoczynkowy i uzdrowiskowy jednocześnie.</p>
+            </div>
+            
+            <div class="destination-detail__card">
+              <div class="destination-detail__icon">⭐</div>
+              <h3 class="destination-detail__card-title">Z czego słynie</h3>
+              <p class="destination-detail__text">Słynie z położenia nad największym w Polsce sztucznym zbiornikiem (Solińskie) oraz z wód mineralnych wykorzystywanych w leczeniu różnych schorzeń. To największy ośrodek uzdrowiskowo-wypoczynkowy w Bieszczadach.</p>
+            </div>
+            
+            <div class="destination-detail__card">
+              <div class="destination-detail__icon">◆</div>
+              <h3 class="destination-detail__card-title">Co go wyróżnia</h3>
+              <p class="destination-detail__text">Widoki i "oddech przestrzeni" - Bieszczady robią robotę. Polańczyk daje też możliwość aktywności: spacery, woda, lekkie trasy - bez ekstremów.</p>
+            </div>
+            
+            <div class="destination-detail__card destination-detail__card--full">
+              <div class="destination-detail__icon">❤</div>
+              <h3 class="destination-detail__card-title">Dlaczego warto pojechać</h3>
+              <p class="destination-detail__text">Idealne dla klienta, który chce regeneracji w naturze, ale nie tylko "leżenia". W praktyce: rano zabiegi, po południu jezioro/spacer/lekka aktywność - i człowiek wraca z wyjazdu realnie "odświeżony".</p>
+            </div>
+          </div>
+          
+          <div class="destination-detail__fact">
+            <div class="destination-detail__fact-label">Ciekawostka</div>
+            <p class="destination-detail__fact-text">Polańczyk leży nad zachodnim brzegiem Jeziora Solińskiego i jest największym uzdrowiskiem w Bieszczadach.</p>
+          </div>
+          
+          <div class="destination-detail__gallery">
+            <div class="destination-detail__gallery-item destination-detail__gallery-item--main">
+              <img src="/assets/img/destinations/polanczyk/polanczyk.webp" alt="Polańczyk - widok główny">
+            </div>
+            <div class="destination-detail__gallery-item">
+              <img src="/assets/img/destinations/polanczyk/polanczyk_alt-1.webp" alt="Polańczyk">
+            </div>
+            <div class="destination-detail__gallery-item">
+              <img src="/assets/img/destinations/polanczyk/polanczyk1.webp" alt="Polańczyk">
+            </div>
+            <div class="destination-detail__gallery-item">
+              <img src="/assets/img/destinations/polanczyk/polanczyk2.webp" alt="Polańczyk">
+            </div>
+            <div class="destination-detail__gallery-item">
+              <img src="/assets/img/destinations/polanczyk/polanczyk3.webp" alt="Polańczyk">
+            </div>
+          </div>
+        </article>
+
+        <!-- 8. Muszyna -->
+        <article id="muszyna" class="destination-detail">
+          <div class="destination-detail__header">
+            <img src="/assets/img/destinations/muszyna/muszyna.webp" alt="Muszyna" class="destination-detail__image">
+            <div class="destination-detail__intro">
+              <span class="destination-detail__region">Małopolskie, Beskid Sądecki (Dolina Popradu)</span>
+              <h2 class="destination-detail__title">Muszyna</h2>
+              <p class="destination-detail__tagline">Dla osób przemęczonych to idealny reset: spokojny plan dnia, natura, spacery, wody mineralne.</p>
+            </div>
+          </div>
+          
+          <div class="destination-detail__grid">
+            <div class="destination-detail__card">
+              <div class="destination-detail__icon">✦</div>
+              <h3 class="destination-detail__card-title">Co w niej wyjątkowe</h3>
+              <p class="destination-detail__text">Muszyna to uzdrowisko o bardzo przyjemnym "naturalnym" klimacie, mocno związane z wodami mineralnymi i spokojem doliny Popradu. Jest świetna na pobyty regeneracyjne z naturą na pierwszym planie.</p>
+            </div>
+            
+            <div class="destination-detail__card">
+              <div class="destination-detail__icon">⭐</div>
+              <h3 class="destination-detail__card-title">Z czego słynie</h3>
+              <p class="destination-detail__text">Słynie m.in. z Ogrodów Sensorycznych - atrakcji bardzo przyjaznej i dostępnej (również dla osób z ograniczeniami ruchu). Ma też wyraźny charakter spacerowy i rodzinny.</p>
+            </div>
+            
+            <div class="destination-detail__card">
+              <div class="destination-detail__icon">◆</div>
+              <h3 class="destination-detail__card-title">Co ją wyróżnia</h3>
+              <p class="destination-detail__text">To uzdrowisko, które łączy "zielony relaks" z miejscami-doświadczeniami (ogrody, punkty widokowe). Dla klientów to realnie czuć: jest gdzie oddychać i gdzie chodzić.</p>
+            </div>
+            
+            <div class="destination-detail__card destination-detail__card--full">
+              <div class="destination-detail__icon">❤</div>
+              <h3 class="destination-detail__card-title">Dlaczego warto pojechać</h3>
+              <p class="destination-detail__text">Dla osób przemęczonych to idealny reset: spokojny plan dnia, natura, spacery, wody mineralne. Plus: bliskość górskich tras bez presji "wysokogórskich" wyzwań.</p>
+            </div>
+          </div>
+          
+          <div class="destination-detail__fact">
+            <div class="destination-detail__fact-label">Ciekawostka</div>
+            <p class="destination-detail__fact-text">Ogrody Sensoryczne są przystosowane m.in. dla wózków i osób z niepełnosprawnościami (ścieżki, tablice).</p>
+          </div>
+          
+          <div class="destination-detail__gallery">
+            <div class="destination-detail__gallery-item destination-detail__gallery-item--main">
+              <img src="/assets/img/destinations/muszyna/muszyna.webp" alt="Muszyna - widok główny">
+            </div>
+            <div class="destination-detail__gallery-item">
+              <img src="/assets/img/destinations/muszyna/muszyna_alt-1.webp" alt="Muszyna">
+            </div>
+            <div class="destination-detail__gallery-item">
+              <img src="/assets/img/destinations/muszyna/muszyna1.webp" alt="Muszyna">
+            </div>
+            <div class="destination-detail__gallery-item">
+              <img src="/assets/img/destinations/muszyna/Muszyna2.webp" alt="Muszyna">
+            </div>
+          </div>
+        </article>
+
+        <div class="text-center" style="margin-top: var(--space-2xl);">
+          <a href="/pl/journey-form.html" class="btn btn-primary">Zapytaj o dostępność</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="/assets/js/includes.js"></script>
+  <script src="/assets/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>FraVeRa Map</title>
+  <link rel="stylesheet" href="./map.css" />
+</head>
+<body>
+  <div class="fv-map-wrapper">
+    <svg id="fv-map" viewBox="0 0 900 750" preserveAspectRatio="xMidYMid meet"></svg>
+    
+    <div class="fv-map-tooltip" id="map-tooltip">
+      <div class="tooltip-image">
+        <img src="" alt="" id="tooltip-img">
+      </div>
+      <div class="tooltip-content">
+        <h3 id="tooltip-title"></h3>
+        <p id="tooltip-desc"></p>
+        <a href="#" class="tooltip-link" id="tooltip-link">Zobacz więcej</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+  <script src="./map.js"></script>
+</body>
+</html>

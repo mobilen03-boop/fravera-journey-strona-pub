@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Start Je Reis — FraVeRa Journey</title>
+  <meta name="description" content="Vul het formulier in om je regeneratiereis te starten. Gratis, vrijblijvend consult.">
+  <link rel="canonical" href="https://fravera-journey.com/nl/journey-form.html">
+  <link rel="icon" type="image/png" href="/assets/img/ogolne/favicon.webp">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+<body>
+  <div id="header-placeholder"></div>
+
+  <main style="padding-top: 100px;">
+    <section class="section">
+      <div class="container container-narrow">
+        <div class="section-header">
+          <span class="section-label">Contactformulier</span>
+          <h1 class="section-title">Start Je <strong>Reis</strong></h1>
+          <p class="section-desc">Vul het onderstaande formulier in zodat wij een gepersonaliseerd aanbod kunnen voorbereiden. Wij reageren binnen 48 uur.</p>
+        </div>
+
+        <form action="https://usebasin.com/f/ce989cfdc5d2" method="POST" data-validate class="form-container" style="background: var(--color-bg-light); padding: var(--space-lg); border-radius: var(--radius-lg);">
+          <div class="honeypot"><label for="website">Website</label><input type="text" id="website" name="website" tabindex="-1" autocomplete="off"></div>
+          <input type="hidden" name="timestamp" value=""><script>document.querySelector('input[name="timestamp"]').value = Date.now();</script>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="firstName" class="form-label">Voornaam <span class="required">*</span></label>
+              <input type="text" id="firstName" name="firstName" class="form-input" required placeholder="Je voornaam">
+            </div>
+            <div class="form-group">
+              <label for="lastName" class="form-label">Achternaam <span class="required">*</span></label>
+              <input type="text" id="lastName" name="lastName" class="form-input" required placeholder="Je achternaam">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email" class="form-label">Email <span class="required">*</span></label>
+              <input type="email" id="email" name="email" class="form-input" required placeholder="jouw@email.com">
+            </div>
+            <div class="form-group">
+              <label for="phone" class="form-label">Telefoon</label>
+              <input type="tel" id="phone" name="phone" class="form-input" placeholder="+31 6 1234 5678">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="country" class="form-label">Land van Verblijf <span class="required">*</span></label>
+              <select id="country" name="country" class="form-select" required>
+                <option value="">Kies land</option>
+                <option value="nl">Nederland</option>
+                <option value="be">België</option>
+                <option value="de">Duitsland</option>
+                <option value="other">Anders</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="serviceLevel" class="form-label">Dienstenniveau</label>
+              <select id="serviceLevel" name="serviceLevel" class="form-select">
+                <option value="">Kies niveau</option>
+                <option value="basic">Basic (€90-120)</option>
+                <option value="comfort">Comfort (€210-270)</option>
+                <option value="premium">Premium (€350-440)</option>
+                <option value="not-sure">Weet niet, advies nodig</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="healthNeeds" class="form-label">Gezondheidsbehoeften / Voorkeuren</label>
+            <textarea id="healthNeeds" name="healthNeeds" class="form-textarea" placeholder="Beschrijf kort je gezondheidsbehoeften..."></textarea>
+            <p class="form-hint">Deze informatie helpt ons om de beste faciliteit voor je te vinden.</p>
+          </div>
+
+          <div class="form-group">
+            <label class="form-check">
+              <input type="checkbox" name="consent" class="form-check-input" required>
+              <span class="form-check-label">
+                Ik geef toestemming voor de verwerking van mijn persoonsgegevens. 
+                <a href="/nl/privacy.html" target="_blank">Privacybeleid</a>.
+                <span class="required">*</span>
+              </span>
+            </label>
+          </div>
+
+          <div class="form-group" style="margin-top: var(--space-lg);">
+            <button type="submit" class="btn btn-primary" style="width: 100%;">Verstuur Aanvraag</button>
+            <p class="form-hint text-center" style="margin-top: var(--space-sm);">Wij reageren binnen 48 uur. Je gegevens zijn veilig.</p>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <div id="footer-placeholder"></div>
+  <script src="/assets/js/includes.js"></script>
+  <script src="/assets/js/app.js"></script>
+</body>
+</html>
