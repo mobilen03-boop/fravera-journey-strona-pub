@@ -61,7 +61,7 @@
       lat: 50.40727229656303, 
       lon: 16.499644606367028, 
       type: "spa",
-      image: "../img/polanica.webp",
+      image: "/assets/img/destinations/polanica/polanica.webp",
       desc: "Eleganckie uzdrowisko w Kotlinie Kłodzkiej. Znane z najnowocześniejszego w Polsce parku zdrojowego.",
       url: "../../destynacje.html#polanica"
     },
@@ -97,7 +97,7 @@
       lat: 49.37323719691642, 
       lon: 22.41493530518585, 
       type: "spa",
-      image: "/assets/img/destinations/polanica/polanica.webp",
+      image: "/assets/img/destinations/polanczyk/polanczyk.webp",
       desc: "Nadjeziorny kurort nad Soliną. Doskonałe miejsce na wypoczynek i aktywność na świeżym powietrzu.",
       url: "../../destynacje.html#polanczyk"
     },
