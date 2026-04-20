@@ -101,15 +101,25 @@
       desc: "Nadjeziorny kurort nad Soliną. Doskonałe miejsce na wypoczynek i aktywność na świeżym powietrzu.",
       url: "../../destynacje.html#polanczyk"
     },
-    { 
-      name: "Wieliczka", 
-      lat: 49.987061, 
-      lon: 20.064796, 
-      type: "spa",
-      image: "/assets/img/destinations/wieliczka/wieliczka.webp",
-      desc: "Historyczne miasto słynące z tężni solankowych i unikalnej kopalni soli na liście UNESCO.",
-      url: "../../destynacje.html#wieliczka"
-    }
+   /* 
+  ===================================================================
+  UKRYTE – WSPÓŁPRACA W TRAKCIE NEGOCJACJI
+  Destynacja: Wieliczka
+  Data ukrycia: 2026-04-20
+  Przywrócić po podpisaniu umowy z Kopalnią Soli Wieliczka
+  ===================================================================
+  */
+  /*
+  { 
+    name: "Wieliczka", 
+    lat: 49.987061, 
+    lon: 20.064796, 
+    type: "spa",
+    image: "/assets/img/destinations/wieliczka/wieliczka.webp",
+    desc: "Historyczne miasto słynące z tężni solankowych i unikalnej kopalni soli na liście UNESCO.",
+    url: "../../destynacje.html#wieliczka"
+  },
+  */
   ];
 
   const allPoints = [...points, ...spas];
